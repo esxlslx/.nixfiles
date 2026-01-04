@@ -168,7 +168,7 @@
     #qbittorrent # Торренты качать
     qbittorrent-enhanced
     bitwarden-desktop # Password manager
-    v2rayn # Vless
+    #v2rayn # Vless
     throne # Vless
     mission-center # Монитор ресурсов
     gnome-disk-utility # Диски трогат
@@ -453,10 +453,10 @@
     ruff # Extremely fast Python linter
 
     # Rust
-    rustup # Управление версиями языка Rust (rustup default stable)
+    #rustup # Управление версиями языка Rust (rustup default stable)
 
     # Golang
-    go # Go programming language
+    #go # Go programming language
 
     # Protobuf
     protols # LSP

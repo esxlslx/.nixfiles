@@ -201,6 +201,9 @@ input {
 mouse {
 	accel-speed -0.4
 	accel-profile "flat"
+	scroll-method "on-button-down"
+	scroll-button 276
+	scroll-factor 1.2
 }
 touchpad {
 	off

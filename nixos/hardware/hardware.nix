@@ -16,12 +16,14 @@
       extraPackages = with pkgs; [
         libva # VAAPI (Video Acceleration API)
         rocmPackages.clr.icd # OpenCL
+        libva-utils
+        mesa
       ];
     };
 
     opentabletdriver.enable = true; # Установить, настроить и добавить в автозапуск otd
 
-    keyboard.qmk.enable = true; # Еnable non-root access to the firmware of QMK keyboards.
+    # keyboard.qmk.enable = true; # Еnable non-root access to the firmware of QMK keyboards.
 
     # Список пакетов-драйверов, которые будут активированы лишь при нахождении подходящего оборудования
     # firmware = with pkgs; [];
