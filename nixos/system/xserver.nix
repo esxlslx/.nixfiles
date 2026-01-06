@@ -25,7 +25,7 @@
     # https://discourse.nixos.org/t/amd-gpu-optimal-settings/27648/3
 
     # videoDrivers = [ "nvidia" ]; # https://nixos.wiki/wiki/Nvidia
-    # videoDrivers = [ "amdgpu" ]; # https://nixos.wiki/wiki/AMD_GPU
-    # deviceSection = ''Option "TearFree" "True"'';
+    videoDrivers = [ "amdgpu" ]; # https://nixos.wiki/wiki/AMD_GPU
+    deviceSection = ''Option "TearFree" "True"'';
   };
 }

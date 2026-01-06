@@ -87,7 +87,7 @@
 
     thunar = {
       enable = true;
-      plugins = with pkgs.xfce; [
+      plugins = with pkgs; [
         thunar-media-tags-plugin # Tagging and renaming features for media files
         thunar-archive-plugin # File context menus for archives
         thunar-volman # Automatic management of removable drives and media
@@ -100,10 +100,6 @@
       # package = pkgs2.steam;
       # fontPackages = with pkgs; []; # Font packages to use in Steam
       # extraPackages = with pkgs; []; # Additional
-      extraCompatPackages = with pkgs.nur.repos.mio; [
-      proton-ge-custom
-      proton-cachyos_x86_64_v3
-      ];
       protontricks.enable = true; # Running Winetricks commands for Proton-enabled games.
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
@@ -125,7 +121,7 @@
     gamescope.enable = true;
     };
 
-    programs.dms-shell = {
+    /*programs.dms-shell = {
       enable = true;
       package = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;
       
@@ -138,12 +134,20 @@
       enableDynamicTheming = true;       # Wallpaper-based theming (matugen)
       enableAudioWavelength = true;      # Audio visualizer (cava)
       enableCalendarEvents = true;       # Calendar integration (khal)
-      };
+      }; */
     
     # Flatpak
     services.flatpak.packages = [
     "ru.linux_gaming.PortProton"
     ];
+
+    programs.adb.enable = true; # enable android proper data tethering
+
+    programs.obs-studio = {
+    enable = true;
+    enableVirtualCamera = true;
+    };
+
 
     environment.systemPackages = with pkgs; [
 
@@ -151,6 +155,7 @@
     ## Some apps ##
     ######################
 
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default # Shell for niri
     inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww # Wallpapers for vicinae
     swww # Wallpapers
     vicinae # Прикольная штука замена fuzzel
@@ -301,8 +306,8 @@
     ranger # Terminal file manager
     nautilus # File manager
     yazi # Terminal File manager
-    xfce.thunar # GUI file manager (допы выше в `programs` и `services`)
-    xfce.catfish # File searching (for Thunar)
+    thunar # GUI file manager
+    catfish # File searching (for Thunar)
     xfce4-exo # Мб надо, чтоб терминал открывать в каталоге
     ffmpegthumbnailer # A lightweight video thumbnailer
     # f3d # Fast and minimalist 3D viewer using VTK. Thumbnailer for 3D files, including glTF, stl, step, ply, obj, fbx.
@@ -338,7 +343,7 @@
 
     tauon # Музыкальный плееер
     rhythmbox # Музыкальный плееер
-    obs-studio # Запись видео
+    #obs-studio # Запись видео
     # picard # Массовый редактор метаданных музыки
     # mousai # Опенсорс шазам. Со временем просит платный api
     mpv # Смотреть видео
@@ -485,6 +490,8 @@
     gnutar # Для .tar?
     p7zip # Это пакет для 7z?
     bzip2 # .bz2 архивы
+    unar #
+    peazip #
   ];
   
   nixpkgs.config.permittedInsecurePackages = [

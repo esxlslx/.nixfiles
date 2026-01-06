@@ -11,6 +11,8 @@
       enable = true;
       checkReversePath = "loose";
       trustedInterfaces = [ "throne-tun" ];
+      allowedTCPPorts = [ 4747 ];
+      allowedUDPPorts = [ 4747 ];
     };
   };
   

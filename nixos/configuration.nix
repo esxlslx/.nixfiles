@@ -30,9 +30,6 @@
       options = "--delete-older-than 30d";
     };
   };
-
-  hardware.amdgpu.overdrive.enable = true;
-  hardware.i2c.enable = true;
  
   programs.dconf.enable = true;
 

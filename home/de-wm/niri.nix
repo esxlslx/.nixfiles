@@ -2,8 +2,8 @@
   xdg.configFile."niri/config.kdl".text = ''
 
     // === Startup ===
-spawn-sh-at-startup 	"vicinae server"
-spawn-at-startup        "dms" "run"
+spawn-sh-at-startup 		"vicinae server"
+spawn-at-startup        	"noctalia-shell"
 spawn-at-startup		"/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup		"/usr/lib/xdg-desktop-portal-gnome"
 spawn-at-startup		"nm-applet" "--indicator"
@@ -21,43 +21,44 @@ binds {
     Mod+MouseBack		repeat=false { toggle-overview; }
     Mod+Shift+Slash		{ show-hotkey-overlay; }
     Mod+E			hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
-    Mod+Shift+E			hotkey-overlay-title="File Manager: Nautilus" { spawn "thunar"; }
+    Mod+Shift+E			hotkey-overlay-title="File Manager: Thunar" { spawn "thunar"; }
     Mod+W			hotkey-overlay-title="File Manager: Yazi" { spawn "kitty" "-e" "yazi"; }
-    Mod+Shift+Home		hotkey-overlay-title="Hide/Show Bar" { spawn "dms" "ipc" "call" "bar" "toggle"; }
-    Mod+Shift+Insert		hotkey-overlay-title="LockScreen" { spawn "dms" "ipc" "call" "lock" "lock"; }
+    Mod+Shift+Home		hotkey-overlay-title="Hide/Show Bar" { spawn "noctalia-shell" "ipc" "call" "bar" "toggle"; }
+    Mod+Shift+Insert		hotkey-overlay-title="LockScreen" { spawn "noctalia-shell" "ipc" "call" "lockScreen" "toggle"; }
+
 
     // === Application Launchers ===
-    Mod+Return			hotkey-overlay-title="Open Terminal" { spawn "kitty"; }
-    Mod+D			hotkey-overlay-title="Application Launcher" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
+    Mod+Return			hotkey-overlay-title="Open Kitty" { spawn "kitty"; }
+    Mod+Shift+Return		hotkey-overlay-title="Open Alacritty" { spawn "alacritty"; }
+    Mod+D			hotkey-overlay-title="Application Launcher" { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
     Mod+V			hotkey-overlay-title="Clipboard Manager" repeat=false { spawn "vicinae" "vicinae://extensions/vicinae/clipboard/history"; }
-    Mod+Comma			hotkey-overlay-title="Settings" { spawn "dms" "ipc" "call" "settings" "toggle"; }
-    Mod+N			hotkey-overlay-title="Notifications History" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
+    Mod+Comma			hotkey-overlay-title="Settings" { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
+    Mod+N			hotkey-overlay-title="Notifications History" { spawn "noctalia-shell" "ipc" "call" "notifications" "toggleHistory"; }
     Mod+M			hotkey-overlay-title="Task Manager" { spawn "missioncenter"; }
 
     // === Other Apps ===
     Mod+Shift+C			{ spawn "hyprpicker" "-a" "$(wl-paste)"; }
-    //Mod+Ctrl+P			{ spawn "waypaper"; }
-    Mod+Ctrl+P			{ spawn "dms" "ipc" "call" "dankdash" "wallpaper"; }
+    //Mod+Ctrl+P		{ spawn "waypaper"; }
+    Mod+Ctrl+P			{ spawn "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
     Mod+Shift+P			{ spawn-sh "/home/falguren/.config/niri/script/off.sh"; }
 
     // === Security ===
-    Mod+Ctrl+Delete			{ quit; }
-    Mod+Shift+Delete        { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
+    Mod+Ctrl+Delete		{ quit; }
+    Mod+Shift+Delete		{ spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
 
     // === Audio Controls ===
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "increment" "5"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "decrement" "5"; }
-    XF86AudioMute allow-when-locked=true 	{ spawn "dms" "ipc" "call" "audio" "mute"; }
-    XF86AudioPlay allow-when-locked=true	{ spawn "dms" "ipc" "call" "mpris" "playPause"; }
-    XF86AudioNext allow-when-locked=true 	{ spawn "dms" "ipc" "call" "mpris" "next"; }
-    XF86AudioPrev allow-when-locked=true 	{ spawn "dms" "ipc" "call" "mpris" "previous"; }
-    XF86AudioStop allow-when-locked=true	{ spawn "dms" "ipc" "call" "mpris" "stop"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "increase"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "decrease"; }
+    XF86AudioMute allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
+    XF86AudioPlay allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "playPause"; }
+    XF86AudioNext allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "next"; }
+    XF86AudioPrev allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "previous"; }
 
     // === Brightness Controls ===
-    //XF86MonBrightnessUp allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" ""; }
-    //XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5" ""; }
-    XF86HomePage allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" ""; }
-    XF86Mail allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5" ""; }
+    //XF86MonBrightnessUp allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
+    //XF86MonBrightnessDown allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+    XF86HomePage allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
+    XF86Mail allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
     
     // === Window Management ===
     Mod+Shift+Q			repeat=false { close-window; }
@@ -194,7 +195,7 @@ input {
     keyboard {
 	xkb {
 	layout "us,ru,ua"
-	options "grp:alt_shift_toggle,grp:caps_toggle"
+	options "grp:caps_toggle"
     }
 	numlock
 }
@@ -203,18 +204,13 @@ mouse {
 	accel-profile "flat"
 	scroll-method "on-button-down"
 	scroll-button 276
-	scroll-factor 1.2
+	scroll-factor 2.0
 }
 touchpad {
 	off
 }
 
 	focus-follows-mouse max-scroll-amount="0%"
-}
-
-cursor {
-	xcursor-theme "Bibata-Modern-Ice"
-	xcursor-size 20
 }
 
 output "DP-2" {
@@ -378,7 +374,7 @@ layer-rule {
 	match namespace="swww-daemon"
 	match namespace="mpvpaper"
 	match namespace="awww-daemon"
-	match namespace="^quickshell$"
+	match namespace="^noctalia-wallpaper*"
 	place-within-backdrop true
 }
 

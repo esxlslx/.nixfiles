@@ -9,7 +9,7 @@
       github.user = "esxlslx";
       user = {
         name = "esxlslx";
-        email = "mikumiku@beam" # Place with your real email, Hatsune Miku the best btw mikumiku@beam
+        email = "mikumiku@beam"; # Place with your real email, Hatsune Miku the best btw mikumiku@beam
       };
     };
     # aliases = {

@@ -4,8 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,19 +40,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixcord = {
     url = "github:kaylorben/nixcord";
     inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs @ {
+  outputs = inputs@{
     nixpkgs,
     self,
     home-manager,
     nur,
     nix-flatpak,
-    nixpkgs-master,
     stylix,
     ...
   }:
@@ -68,18 +70,12 @@
       inherit system;
       inherit config;
     };
-    pkgs-master = import nixpkgs-master {
-      inherit system;
-      config = {
-       allowUnfree = true;
-      };
-    };
   in {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       inherit system;
 
       specialArgs = {
-        inherit inputs pkgs-master system;
+        inherit inputs system;
       };
 
       modules = [

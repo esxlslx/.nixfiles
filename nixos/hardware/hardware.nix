@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }: {
   hardware = { # Параметры для 24.05 и unstable могут сильно отличаться
-    amdgpu = {
+    /*amdgpu = {
       opencl.enable = true; # Enable OpenCL support using ROCM runtime library.
       # amdvlk = { # Гавно лаганое, лучше radv юзать (radeon vulkan)
       #   enable = true; # Enable AMDVLK Vulkan driver.
@@ -8,20 +8,22 @@
       #   supportExperimental.enable = true; # Enable Experimental features support.
       #   # settings = {}; # Runtime settings for AMDVLK to be configured /etc/amd/amdVulkanSettings.cfg.
       # };
-    };
+    };*/
     
+    amdgpu.overdrive.enable = true;
+
+    i2c.enable = true;
+
     graphics = { # hardware.opengl переименован в hardware.graphics в unstable ветке
       enable = true;
       enable32Bit = true; # install 32-bit drivers for 32-bit applications (such as Wine).
       extraPackages = with pkgs; [
         libva # VAAPI (Video Acceleration API)
         rocmPackages.clr.icd # OpenCL
-        libva-utils
-        mesa
       ];
     };
 
-    opentabletdriver.enable = true; # Установить, настроить и добавить в автозапуск otd
+    # opentabletdriver.enable = true; # Установить, настроить и добавить в автозапуск otd
 
     # keyboard.qmk.enable = true; # Еnable non-root access to the firmware of QMK keyboards.
 
@@ -61,7 +63,6 @@
     "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
   ];
 
-  boot.initrd.kernelModules = [ "amdgpu" ]; # Мб не обязательно
 
   # Для AMD существует два драйвера Vulkan
   # Один официальный от AMD - amdvlk
@@ -75,7 +76,11 @@
     lact
   ];
 
-  systemd.services.lact = {
+  ## LACT daemon ##
+  systemd.packages = with pkgs; [ lact ];
+  systemd.services.lactd.wantedBy = ["multi-user.target"];
+
+  /*systemd.services.lact = {
     description = "AMDGPU Control Daemon";
     after = ["multi-user.target"];
     wantedBy = ["multi-user.target"];
@@ -83,5 +88,5 @@
       ExecStart = "${pkgs.lact}/bin/lact daemon";
     };
     enable = true;
-  };
+  };*/
 }

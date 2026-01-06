@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ config, pkgs, ...}: {
   boot = {
     loader = {
       systemd-boot = {
@@ -6,7 +6,7 @@
         editor = false;
       };
       efi.canTouchEfiVariables = true;
-      timeout = 3;
+      timeout = 2;
     };
 
     /*loader = {
@@ -20,11 +20,24 @@
 
     tmp.cleanOnBoot = true;
 
-    extraModprobeConfig = "options amdgpu ppfeaturemask=0xffffffff" ;
+    initrd.kernelModules = [ "amdgpu" ]; # Мб не обязательно
+
+    extraModprobeConfig = ''options amdgpu ppfeaturemask=0xffffffff v4l2loopback exclusive_caps=1 card_label="Virtual Camera" video_nr=9'';
+
+    extraModulePackages = with config.boot.kernelPackages; [
+      v4l2loopback
+    ];
+
     kernelPackages = pkgs.linuxPackages_zen;
+
     kernelParams = [
       "quiet"
       "splash"
+    ];
+
+    kernelModules = [
+      "v4l2loopback"
+      "amdgpu"
     ];
   };
 }
