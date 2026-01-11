@@ -215,6 +215,7 @@
         whoReacted.enable = true;
         noUnblockToJump.enable = true;
         anonymiseFileNames.enable = true;
+	questify.enable = true;
         
         # Плагины ниже отключены
         ClearURLs.enable = false;

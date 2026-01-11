@@ -26,6 +26,7 @@
     power-profiles-daemon.enable = true;
     upower.enable = true;
     logmein-hamachi.enable = true;
+    resolved.enable = true;
 
     # fstrim.enable = true; # Чистит ssd для норм производительности. Пока не пользуюсь
     # archisteamfarm = {}; # Фарм карточек стима афк. Просто раскомментить мало, надо настроить
@@ -157,6 +158,7 @@
 
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default # Shell for niri
     inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww # Wallpapers for vicinae
+    quickshell
     swww # Wallpapers
     vicinae # Прикольная штука замена fuzzel
     waybar # Bar  
@@ -195,12 +197,11 @@
     lmstudio # Local AP
     lsfg-vk # Framegen losless scaling
     lsfg-vk-ui # Framegen losless scaling
-    #nur.repos.MiyakoMeow.free-download-manager # Download manager
     pear-desktop # YT-music
     micro # Terminal text editor
     parabolic # Frontend yt-dlp
     qdiskinfo # Disk info
-    waypaper # Wallpaper set
+    waypaper # Wallpaper
     zoom-us # Video conferencing
     qalculate-gtk # Calculator
 
@@ -214,8 +215,7 @@
     git
     yt-dlp # Скачивать и смотреть медиа с разных сайтов
     wl-clipboard
-    # cliphist
-    nur.repos.zerozawa.mikusays # Мику
+    # cliphist 
     nix-melt
     microfetch 
     trash-cli 
@@ -263,7 +263,6 @@
     xwayland-satellite # Для нири
     xwayland # Для нири
     nwg-look # GTK настройки
-    playerctl #
     udiskie #
     calf # Для изиефект
     lvm2 # Для изиефект
@@ -279,6 +278,13 @@
 
     alacritty 
     kitty # Самый быстрый протокол отображения медиа, но ssh через жопу работает
+
+    ##############
+    ##   NUR    ##
+    ##############
+
+    #nur.repos.MiyakoMeow.free-download-manager # Download manager
+    nur.repos.zerozawa.mikusays # Мику
 
     ##############
     ## Browsers ##
@@ -347,7 +353,7 @@
     # picard # Массовый редактор метаданных музыки
     # mousai # Опенсорс шазам. Со временем просит платный api
     mpv # Смотреть видео
-    # Смотреть картинки
+    imv # Смотреть картинки
     qview # Умеет открывать всё, включая анимированный webp и avif
     gthumb
     feh # Нужен в большом количестве софта как зависимость. Может в avif, но криво
@@ -364,7 +370,7 @@
     ###########
 
     # Мб зависимости
-    protonup-qt # Управлять версиями proton-ge для steam
+    # protonup-qt # Управлять версиями proton-ge для steam
     steam-run # На всякий случай
     mangohud # Фпс и нагрузку на пк показывает в играх
     wineWowPackages.stableFull # support both 32- and 64-bit applications
@@ -373,9 +379,10 @@
     # wineWowPackages.waylandFull # native wayland support (unstable)
     protontricks # Running Winetricks commands for Proton-enabled games
     goverlay #
-    lutris # Games launcher
+    # lutris # Games launcher
     heroic # Games launcher
     protonplus # Download proton to Steam Lutris etc
+    prismlauncher # Minecraft
 
     ############
     ## Design ##
@@ -400,6 +407,7 @@
     neovim
     vim
     vscodium
+    zed-editor
 
     ###########
     ## Icons ##
@@ -478,7 +486,7 @@
 
     v2ray # VPN
     xray # VPN
-	  sing-box # VPN
+    sing-box # VPN
 
     ############
     ## Архивы ##

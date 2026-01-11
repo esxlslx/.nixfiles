@@ -37,6 +37,13 @@
 
   environment.systemPackages = with pkgs; [
 	#vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+	(writeShellScriptBin "npath" ''
+	if [ -z "$1" ]; then
+	  	echo "Usage: npath <program>"
+		exit 1
+	fi
+	readlink -f $(which $1)
+	'')
   ];
 
   system.stateVersion = "25.11";
@@ -64,14 +71,14 @@
       xdg-desktop-portal-gtk
       xdg-desktop-portal-wlr
       xdg-desktop-portal-gnome
-    ];
+      ];
   };
   
   xdg.terminal-exec = {
     enable = true;
     settings = {
       default = [
-        "kitty.desktop"
+        "com.mitchellh.ghostty.desktop"
       ];
     };
   };

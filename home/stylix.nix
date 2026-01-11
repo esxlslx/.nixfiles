@@ -1,4 +1,4 @@
-{
+{ pkgs, ... }: {
   imports = [
     ../nixos/software/stylix.nix
   ];
@@ -9,10 +9,11 @@
       firefox.enable = false; # Руками ставлю и бекаплю каталог браузера
       zen-browser.enable = false;
     };
-    # iconTheme = {
-    #   enable = true;
-    #   package = pkgs.papirus-icon-theme;
-    #   dark = "Papirus-Dark";
-    # };
+     icons = {
+       enable = true;
+       #package = papirus-icon-theme;
+       package = pkgs.rose-pine-icon-theme;
+       dark = "rose-pine";
+     };
   };
 }

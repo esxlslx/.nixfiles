@@ -28,9 +28,10 @@ binds {
 
 
     // === Application Launchers ===
-    Mod+Return			hotkey-overlay-title="Open Kitty" { spawn "kitty"; }
-    Mod+Shift+Return		hotkey-overlay-title="Open Alacritty" { spawn "alacritty"; }
-    Mod+D			hotkey-overlay-title="Application Launcher" { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Mod+Return			hotkey-overlay-title="Open Ghostty" { spawn "ghostty"; }
+    Mod+Shift+Return		hotkey-overlay-title="Open Kitty" { spawn "kitty"; }
+    //Mod+D			hotkey-overlay-title="Application Launcher" { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Mod+D			repeat=false { spawn "vicinae" "toggle"; }
     Mod+V			hotkey-overlay-title="Clipboard Manager" repeat=false { spawn "vicinae" "vicinae://extensions/vicinae/clipboard/history"; }
     Mod+Comma			hotkey-overlay-title="Settings" { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
     Mod+N			hotkey-overlay-title="Notifications History" { spawn "noctalia-shell" "ipc" "call" "notifications" "toggleHistory"; }
@@ -179,7 +180,7 @@ binds {
     Mod+Ctrl+Print		{ spawn "flameshot" "gui"; }
 
 }
-	screenshot-path "~/Pictures/Screenshot/Screenshot %d-%m-%y %H-%M-%S.png"
+	screenshot-path "~/Pictures/Screenshots/Screenshot %d-%m-%y %H-%M-%S.png"
 	prefer-no-csd
 
 environment {
@@ -259,7 +260,7 @@ recent-windows {
 }
 
 layout {
-	gaps 6
+	gaps 8
 	//center-focused-column "on-overflow"
 	//empty-workspace-above-first 
 	always-center-single-column
@@ -353,7 +354,7 @@ window-rule {
 }
 
 window-rule {
-	geometry-corner-radius 15
+	geometry-corner-radius 20
 	clip-to-geometry true
 }
 

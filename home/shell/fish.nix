@@ -1,11 +1,14 @@
 {pkgs, ...}: {
   programs.fish = {
     enable = true;
-    shellAliases = {
+    shellAliases = let
+    	flakeDir = "~/.nixfiles";
+	in {
       cat = "bat";
       ff = "fastfetch";
       b = "btop";
       y = "yazi";
+      v = "nvim";
       brightness = "sudo ddcutil setvcp 10 --sn 6730510018156";
       ls = "eza --icons";
       ll = "eza -l --icons";
@@ -14,7 +17,12 @@
       llt = "eza -l --tree --icons";
       rm = "rm -i";
       nixbuild = "sudo nixos-rebuild switch --flake ./ --impure";
-      nixremove = "sudo nix-collect-garbage -d";
+      rbs = "sudo nixos-rebuild switch --impure --flake ${flakeDir}";
+      rbb = "sudo nixos-rebuild boot --impure --flake ${flakeDir}";
+      upd = "sudo nix flake update --flake ${flakeDir}";
+      grb = "sudo nix-collect-garbage -d";
+      pkgs = "nvim ${flakeDir}/nixos/pkgs.nix";
+      #npath = "readlink -f (which $argv[1])";
     };
     functions = {
       yt-playlist = {

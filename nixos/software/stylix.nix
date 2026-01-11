@@ -7,7 +7,7 @@
     autoEnable = true;
 
     polarity = "dark"; # "light" or "either". Если "either", то он сам определяет что будет красивее
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml"; # Если хочешь генерить тему из обоев, то удали эту строку
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml"; # Если хочешь генерить тему из обоев, то удали эту строку
     # image = config.lib.stylix.pixel "base00"; # Вместо обоев будет заливка фона одним цветом из темы
     #image = /home/falguren/Pictures/Wallpapers/Sunset-Forrest.png; # Если хочешь норм обои, то просто укажи путь до изображения
 

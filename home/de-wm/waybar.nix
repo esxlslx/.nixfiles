@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 {
   programs.waybar = {
     enable = true;
@@ -19,19 +19,23 @@
           "niri/window"
         ];
         
-        modules-center = [ "clock" "privacy" ];
+        modules-center = [ "clock" ];
         
         modules-right = [
-          "group/tray-expander"
-          "custom/separator"
-          "cpu"
-          "custom/separator"
-          "memory"
-          "custom/separator"
-          "pulseaudio"
-          "custom/separator"
-          "custom/notification"
-          "custom/separator"
+	"group/tray-expander"
+	"custom/separator"
+	"cpu"
+	"custom/separator"
+	"memory"
+	"custom/separator"
+	"pulseaudio"
+	"custom/separator"
+	"custom/brightness"
+	"custom/separator"
+	"custom/notification"
+	"custom/separator"
+	"network"
+	"custom/separator"
         ];
 
         # Modules configuration
@@ -102,13 +106,25 @@
         clock = {
           format = "{:%H:%M %d/%m}";
           timezone = "Europe/Moscow";
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+	  calendar = {
+	  format = {
+	  days = "<span weight='normal'>{}</span>";
+	  months = "<span color='#cdd6f4'><b>{}</b></span>";
+	  today = "<span color='#f38ba8' weight='700'><u>{}</u></span>";
+	  weekdays = "<span color='#f9e2af'><b>{}</b></span>";
+	  weeks = "<span color='#a6e3a1'><b>W{}</b></span>";
+	  };
+	  mode = "month";
+	  mode-mon-col = 1;
+	  on-scroll = 1;
+	  };
+          tooltip-format = "<span color='#cdd6f4' font='Lexend 16'><tt><small>{calendar}</small></tt></span>";
           interval = 1;
           tooltip = true;
         };
 
         network = {
-          format = "{icon}";
+          format = "";
           format-wifi = "{icon}";
           format-ethernet = " ";
           tooltip-format = " ";
@@ -118,7 +134,6 @@
           on-click = "kitty sh -c nmtui";
           format-icons = ["󰤯 " "󰤟 " "󰤢 " "󰤥 " "󰤨 "];
         };
-
         pulseaudio = {
           scroll-step = 5;
           format = "<span font='Symbols Nerd Font'>{icon}</span> {volume}%";
@@ -139,6 +154,17 @@
           tooltip = false;
         };
 
+          "custom/brightness" = {
+            format = "   {text}%";
+            signal = 8;
+            exec = "~/.nixfiles/home/de-wm/brightness-control.sh get";
+            on-scroll-up = "~/.nixfiles/home/de-wm/brightness-control.sh up";
+            on-scroll-down = "~/.nixfiles/home/de-wm/brightness-control.sh down";
+            on-click = "~/.nixfiles/home/de-wm/brightness-control.sh left_click";
+            on-click-right =  "~/.nixfiles/home/de-wm/brightness-control.sh right_click";
+            tooltip = false;
+            };
+
         "custom/separator" = {
           format = "|";
           tooltip = false;
@@ -153,31 +179,6 @@
           interval = 5;
           format = "<span font='Symbols Nerd Font'> </span> {percentage}%";
           tooltip-format = "Usage: {used:0.1f}G / {total:0.1f}G";
-        };
-
-        privacy = {
-          icon-spacing = 10;
-          icon-size = 16;
-          transition-duration = 250;
-          modules = [
-            {
-              type = "screenshare";
-              tooltip = true;
-              tooltip-icon-size = 24;
-            }
-            {
-              type = "audio-in";
-              tooltip = true;
-              tooltip-icon-size = 24;
-            }
-          ];
-          ignore-monitor = true;
-          ignore = [
-            {
-              type = "audio-in";
-              name = "cava";
-            }
-          ];
         };
       };
     };
@@ -376,4 +377,20 @@ tooltip {
   background: black;
 }
 '';
+
+  xdg.configFile."waybar/colors.css".text = ''
+    /* generated from stylix */
+    @define-color bg        #${config.lib.stylix.colors.base00};
+    @define-color bg-alt    #${config.lib.stylix.colors.base01};
+    @define-color fg        #${config.lib.stylix.colors.base05};
+    @define-color fg-dim    #${config.lib.stylix.colors.base03};
+
+    @define-color red       #${config.lib.stylix.colors.base08};
+    @define-color orange    #${config.lib.stylix.colors.base09};
+    @define-color yellow    #${config.lib.stylix.colors.base0A};
+    @define-color green     #${config.lib.stylix.colors.base0B};
+    @define-color cyan      #${config.lib.stylix.colors.base0C};
+    @define-color blue      #${config.lib.stylix.colors.base0D};
+    @define-color magenta   #${config.lib.stylix.colors.base0E};
+  '';
 }

@@ -1,7 +1,7 @@
 {
   imports = [
-    ./alacritty.nix
-    #./foot.nix
+    #./alacritty.nix
+    ./ghostty.nix
     ./kitty.nix
   ];
 }
