@@ -75,6 +75,18 @@
 	stdenv.cc.cc.lib
 	zlib
 	openssl
+
+	# Creamlinux
+        gtk3                
+        webkitgtk_4_1       
+        libsoup_3           
+        cairo               
+        gdk-pixbuf          
+        pango               
+        atk                 
+        at-spi2-atk         
+        harfbuzz            
+        icu                 
       ];
     };
 
@@ -121,34 +133,16 @@
     # Подробносни тут https://ventureo.codeberg.page/source/linux-gaming.html#gamescope
     gamescope.enable = true;
     };
-
-    /*programs.dms-shell = {
-      enable = true;
-      package = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      
-      systemd.enable = false;
-      
-      # Core features
-      enableSystemMonitoring = true;     # System monitoring widgets (dgop)
-      enableClipboard = true;            # Clipboard history manager
-      enableVPN = true;                  # VPN management widget
-      enableDynamicTheming = true;       # Wallpaper-based theming (matugen)
-      enableAudioWavelength = true;      # Audio visualizer (cava)
-      enableCalendarEvents = true;       # Calendar integration (khal)
-      }; */
     
     # Flatpak
     services.flatpak.packages = [
     "ru.linux_gaming.PortProton"
-    ];
-
-    programs.adb.enable = true; # enable android proper data tethering
+    ]; 
 
     programs.obs-studio = {
     enable = true;
     enableVirtualCamera = true;
-    };
-
+    }; 
 
     environment.systemPackages = with pkgs; [
 
@@ -198,12 +192,15 @@
     lsfg-vk # Framegen losless scaling
     lsfg-vk-ui # Framegen losless scaling
     pear-desktop # YT-music
+    spotify # Spotify
+    nicotine-plus 
     micro # Terminal text editor
     parabolic # Frontend yt-dlp
     qdiskinfo # Disk info
     waypaper # Wallpaper
     zoom-us # Video conferencing
     qalculate-gtk # Calculator
+    gpu-screen-recorder-gtk #
 
     ##############
     ## Terminal ##
@@ -275,6 +272,7 @@
     tldr # Documentation
     wev # Event viewer
     ripdrag # Drag and drop 
+    gpu-screen-recorder #
 
     alacritty 
     kitty # Самый быстрый протокол отображения медиа, но ssh через жопу работает

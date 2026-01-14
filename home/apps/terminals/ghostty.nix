@@ -5,7 +5,8 @@
   enableFishIntegration = true;
   #enableZshIntegration = true;
 
-  settings = {
+  settings = {	
+  	working-directory = "home";
   	font-size = lib.mkForce 13;
 	font-family = lib.mkForce "Liberation Mono";
 	font-family-bold = lib.mkForce "Liberation Mono Bold";

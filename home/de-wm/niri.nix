@@ -205,7 +205,7 @@ mouse {
 	accel-profile "flat"
 	scroll-method "on-button-down"
 	scroll-button 276
-	scroll-factor 2.0
+	scroll-factor 2.5
 }
 touchpad {
 	off
@@ -214,11 +214,11 @@ touchpad {
 	focus-follows-mouse max-scroll-amount="0%"
 }
 
-output "DP-2" {
+output "DP-1" {
 	mode "2560x1440@180.000"
 	scale 1.0
 	focus-at-startup
-	position x=1920 y=0
+	position x=0	y=0
 	//variable-refresh-rate
 }
 
@@ -226,7 +226,7 @@ output "HDMI-A-1" {
     off
 	scale 1.0
 	mode "1920x1080@60"
-	position x=0 y=0
+	position x=0 y=-1080
 }
 
 hotkey-overlay {

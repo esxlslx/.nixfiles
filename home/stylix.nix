@@ -7,7 +7,7 @@
     targets = {
       vscode.enable = false; # Руками ставлю. Не нравится stylix вариант
       firefox.enable = false; # Руками ставлю и бекаплю каталог браузера
-      zen-browser.enable = false;
+      zen-browser.profileNames = [ "default" ];
     };
      icons = {
        enable = true;

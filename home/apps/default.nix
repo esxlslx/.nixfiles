@@ -6,6 +6,6 @@
     ./nixcord.nix
     ./fastfetch.nix
     ./obs/obs.nix
-    #./spicetify.nix
+    ./spicetify.nix
   ];
 }

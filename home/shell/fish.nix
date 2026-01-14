@@ -22,7 +22,7 @@
       upd = "sudo nix flake update --flake ${flakeDir}";
       grb = "sudo nix-collect-garbage -d";
       pkgs = "nvim ${flakeDir}/nixos/pkgs.nix";
-      #npath = "readlink -f (which $argv[1])";
+      adb-start = "adb -P 5037 server nodaemon";
     };
     functions = {
       yt-playlist = {

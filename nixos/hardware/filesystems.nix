@@ -18,5 +18,10 @@
       fsType = "ext4";
       options = [ "defaults" "noatime" "nosuid" "nodev" "nofail" "x-gvfs-show" ];
     };
+    "/mnt/bine4" =
+    { device = "/dev/disk/by-uuid/01e03ae2-649d-4d50-8f4f-aef0abda8575";
+      fsType = "ext4";
+      options = [ "defaults" "noatime" "nosuid" "nodev" "nofail" "x-gvfs-show" ];
+    };
   };
 }
