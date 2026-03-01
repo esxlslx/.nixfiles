@@ -1,10 +1,11 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     autosuggestion = {
       enable = true;
-      strategy = [ # Выбери только один из них (а мб нет, сначала ищет историю, если пусто, то комплитит)
+      strategy = [
+        # Выбери только один из них (а мб нет, сначала ищет историю, если пусто, то комплитит)
         "history" # Chooses the most recent match from history.
         "completion" # Chooses a suggestion based on what tab-completion would suggest. (requires Zsh 3.1 or later)
       ];
@@ -34,7 +35,7 @@
       vim = "nvim";
       vi = "nvim";
       v = "nvim";
-      
+
       t = "timer";
       r = "ranger --choosedir=/tmp/choosedir && cd \"$(cat /tmp/choosedir)\"";
       g = "gitui";
@@ -67,9 +68,11 @@
       ];
     };
 
-    oh-my-zsh = { # https://github.com/ohmyzsh/ohmyzsh
+    oh-my-zsh = {
+      # https://github.com/ohmyzsh/ohmyzsh
       enable = true;
-      plugins = [ # Комментирую то, в надобности чего не уверен, но показалось интересным. Можно удалить
+      plugins = [
+        # Комментирую то, в надобности чего не уверен, но показалось интересным. Можно удалить
         # "alias-finder" # Напомнит, если у написанной команды есть алиас (нет, так что заменил пакетом)
         "aliases" # "als" в терминале покажет все алиасы (нет). Можно добавить слово для фильтрации
         # "autoenv" # If a directory contains an .env file, it will automatically be executed when you cd into it (нет)
@@ -103,3 +106,4 @@
     zsh-nix-shell # zsh plugin that lets you use zsh in nix-shell shell
   ];
 }
+

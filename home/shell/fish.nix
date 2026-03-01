@@ -2,14 +2,14 @@
   programs.fish = {
     enable = true;
     shellAliases = let
-    	flakeDir = "~/.nixfiles";
-	in {
+      flakeDir = "~/.nixfiles";
+    in {
       cat = "bat";
       ff = "fastfetch";
       b = "btop";
       y = "yazi";
       v = "nvim";
-      brightness = "sudo ddcutil setvcp 10 --sn 6730510018156";
+      #brightness = "sudo ddcutil setvcp 10 --sn 6730510018156";
       ls = "eza --icons";
       ll = "eza -l --icons";
       la = "eza -la --icons";

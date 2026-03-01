@@ -1,5 +1,8 @@
-{pkgs, inputs, ...}: {
-
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   fonts.packages = with pkgs; [
     noto-fonts # Шрифт от гугла, цель которого поддержка всех языков мира
     noto-fonts-cjk-serif # Отображение иероглифов. Версия с засечками
@@ -28,11 +31,11 @@
     antialias = true;
     hinting = {
       enable = true;
-      style = "slight"; 
+      style = "slight";
     };
     subpixel = {
       rgba = "rgb";
-      lcdfilter = "default"; 
+      lcdfilter = "default";
     };
   };
 }

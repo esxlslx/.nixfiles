@@ -1,9 +1,13 @@
-{ config, pkgs, curversion, inputs, ... }:
-
 {
+  config,
+  pkgs,
+  curversion,
+  inputs,
+  ...
+}: {
   imports = [
-    #./wm-de
     /etc/nixos/hardware-configuration.nix
+    ./de-wm
     ./hardware
     ./network
     ./software
@@ -15,6 +19,7 @@
   nix = {
     settings = {
       experimental-features = ["nix-command" "flakes"];
+      trusted-users = ["root" "falguren"];
       auto-optimise-store = true;
       warn-dirty = false;
     };
@@ -29,30 +34,29 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-  }; 
- 
+  };
+
   programs.dconf.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-	#vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-	gnome-tweaks
+    #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    gnome-tweaks
 
-	(writeShellScriptBin "npath" ''
-	if [ -z "$1" ]; then
-	  	echo "Usage: npath <program>"
-		exit 1
-	fi
-	readlink -f $(which $1)
-	'')
+    (writeShellScriptBin "npath" ''
+      if [ -z "$1" ]; then
+        	echo "Usage: npath <program>"
+      	exit 1
+      fi
+      readlink -f $(which $1)
+    '')
   ];
 
-  system.stateVersion = "26.05";
+  system.stateVersion = "25.11";
 
-  services.displayManager.gdm.enable = true;
-  programs.niri.enable = true;
-  services.desktopManager.gnome.enable = true;
+  #services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   xdg.portal = {
     enable = true;

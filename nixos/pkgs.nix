@@ -1,40 +1,30 @@
-{ pkgs, inputs, pkgs-master, ... }: {
-
-    systemd = { # Запуск гномовского полкита. Окно ввода пароля для рут доступа
+{
+  pkgs,
+  inputs,
+  pkgs-master,
+  ...
+}: let
+  pkgsStable = import inputs.nixpkgs-stable {
+    system = pkgs.system;
+    config.allowUnfree = true;
+  };
+in {
+  systemd = {
+    # Запуск гномовского полкита. Окно ввода пароля для рут доступа
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
+      wantedBy = ["graphical-session.target"];
+      wants = ["graphical-session.target"];
+      after = ["graphical-session.target"];
       serviceConfig = {
-          Type = "simple";
-          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-          Restart = "on-failure";
-          RestartSec = 1;
-          TimeoutStopSec = 10;
-        };
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
     };
   };
-
-  imports = [
-  inputs.dms.nixosModules.dank-material-shell
-  ];
-
-  programs.dank-material-shell = {
-     enable = true;
-
-     systemd = {
-     enable = false;             
-     restartIfChanged = true;
-     };
-
-     enableSystemMonitoring = true;     
-     enableVPN = true;                  
-     enableDynamicTheming = true;       
-     enableAudioWavelength = true;      
-     enableCalendarEvents = true;       
-     enableClipboardPaste = true;       
-     };
 
   services = {
     gvfs.enable = true; # Mount, trash, and other functionalities for Thunar file manager
@@ -46,14 +36,15 @@
     power-profiles-daemon.enable = true;
     upower.enable = true;
     logmein-hamachi.enable = true;
-    resolved.enable = true;
+    # resolved.enable = true;
     # archisteamfarm = {}; # Фарм карточек стима афк. Просто раскомментить мало, надо настроить
   };
 
-  systemd.services.lactd.enable = true; 
+  systemd.services.lactd.enable = true;
 
   programs = {
-    nix-ld = { # Имитация файловой системы обычного линукса и пакеты для этого дела
+    nix-ld = {
+      # Имитация файловой системы обычного линукса и пакеты для этого дела
       enable = true;
       libraries = with pkgs; [
         # Для запуска Throne бинаря с гитхаб и V2rayN
@@ -70,47 +61,49 @@
         libglvnd
         libxkbcommon
         fontconfig
-        xorg.libX11
-        xorg.libXext
-        xorg.libXrandr
-        xorg.libXrender
-        xorg.libXcursor
-        xorg.libXxf86vm
-        xorg.libXi
-        xorg.libxcb
-        xorg.libXfixes
-        xorg.xcbutil
-        xorg.xcbutilkeysyms
-        xorg.xcbutilwm
-        xorg.xcbutilimage
-        xorg.xcbutilrenderutil
+        libX11
+        libXext
+        libXrandr
+        libXrender
+        libXcursor
+        libXxf86vm
+        libXi
+        libxcb
+        libXfixes
+        xcbutil
+        xcbutilkeysyms
+        xcbutilwm
+        xcbutilimage
+        xcbutilrenderutil
         xcb-util-cursor
         glib
         dbus
         krb5
-	stdenv.cc.cc.lib
-	zlib
-	openssl
+        stdenv.cc.cc.lib
+        zlib
+        openssl
 
-	# Creamlinux
-        gtk3                
-        webkitgtk_4_1       
-        libsoup_3           
-        cairo               
-        gdk-pixbuf          
-        pango               
-        atk                 
-        at-spi2-atk         
-        harfbuzz            
-        icu                 
+        # Creamlinux
+        gtk3
+        webkitgtk_4_1
+        libsoup_3
+        cairo
+        gdk-pixbuf
+        pango
+        atk
+        at-spi2-atk
+        harfbuzz
+        icu
       ];
     };
 
-    appimage = { # Чтоб .appimage работал
+    appimage = {
+      # Чтоб .appimage работал
       enable = true;
       binfmt = true;
-      package = pkgs.appimage-run.override { # Зависимости для нужных мне приложений
-        extraPkgs = pkgs: with pkgs; [ libpng libpng12 libepoxy pcre2 double-conversion ];
+      package = pkgs.appimage-run.override {
+        # Зависимости для нужных мне приложений
+        extraPkgs = pkgs: with pkgs; [libpng libpng12 libepoxy pcre2 double-conversion];
       };
     };
 
@@ -137,72 +130,55 @@
 
     # Оптимизация для игр. https://github.com/FeralInteractive/gamemode
     gamemode = {
-    enable = true;
-    enableRenice = true;
-    settings.general = {
-      desiredgov = "performance";
-      renice = 10;
+      enable = true;
+      enableRenice = true;
+      settings.general = {
+        desiredgov = "performance";
+        renice = 10;
       };
     };
 
     # https://github.com/ValveSoftware/gamescope
     # Подробносни тут https://ventureo.codeberg.page/source/linux-gaming.html#gamescope
     gamescope.enable = true;
-    };
-    
-    # Flatpak
-    services.flatpak.packages = [
+  };
+
+  # Flatpak
+  services.flatpak.packages = [
     "ru.linux_gaming.PortProton"
     "org.kde.kdenlive"
-    ]; 
+  ];
 
-    programs.obs-studio = {
-    enable = true;
-    enableVirtualCamera = true;
-    }; 
+  programs.obs-studio.enableVirtualCamera = true;
 
-    environment.systemPackages = with pkgs; [
-
+  environment.systemPackages = with pkgs; [
     ######################
     ## Some apps ##
     ######################
 
-    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default # Shell for niri
-    inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww # Wallpapers for vicinae
-    inputs.antigravity-nix.packages.${pkgs.system}.default
+    #inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default # Shell for niri
     quickshell
     swww # Wallpapers
     vicinae # Прикольная штука замена fuzzel
-    waybar # Bar  
-    # swaynotificationcenteur
-    onboard
-    libxcb
 
-    
     #########
     ## GUI ##
     #########
-    
+
     flameshot
     # ksnip # Скрин экрана. Аналог - Flameshot
-    # kdePackages.ark # Архиватор от kde. Имеет в зависимостях blowjob
-    file-roller # Архиватор от gnome
-    # qbittorrent # Торренты качать
     qbittorrent-enhanced
     bitwarden-desktop # Password manager
-    # v2rayn # Vless
     throne # Vless
     mission-center # Монитор ресурсов
     gnome-disk-utility # Диски трогат
-    thunderbird # Почтовый клиент для своей почты
+    pkgsStable.thunderbird # Почтовый клиент для своей почты
     pavucontrol # PulseAudio Volume Control
-    # pwvucontrol # Pipewire Volume Control (Не знаю может ли полностью заменить pavucontrol)
     networkmanagerapplet # Tray for network manager
     brightnessctl # Brightness control for laptop
     blueman # Bluetooth
     helvum # Прокидка звука в другие источники pipewire
     # gucharmap # Проверка шрифтов. Какой шрифт какие символы отображает
-    faugus-launcher # Запускать игры
     gparted # Форматирование дисков
     haguichi # Frontend hamachi
     kdePackages.kate # Text editor
@@ -212,14 +188,15 @@
     lsfg-vk-ui # Framegen losless scaling
     pear-desktop # YT-music
     spotify # Spotify
-    nicotine-plus 
+    nicotine-plus # P2P music
     micro # Terminal text editor
     parabolic # Frontend yt-dlp
     qdiskinfo # Disk info
+    kdiskmark #
     waypaper # Wallpaper
     zoom-us # Video conferencing
     gnome-calculator # Calculator
-    gpu-screen-recorder-gtk # Fast record video 
+    gpu-screen-recorder-gtk # Fast record video
     bazaar # Check Flatpaks
     collector #
 
@@ -231,44 +208,41 @@
     wget
     curl
     git
+    gh
     yt-dlp # Скачивать и смотреть медиа с разных сайтов
     wl-clipboard
-    #cliphist 
-    #gearlever # Тоже appimage запускать
-    #appimage-run 
+    # cliphist
+    # gearlever # Тоже appimage запускать
+    # appimage-run
     nix-melt
-    microfetch 
-    trash-cli 
+    microfetch
+    trash-cli
     android-tools # ADB
-    ntfs3g # Для NTFS разделов  
+    ntfs3g # Для NTFS разделов
     ffmpeg_7 # Обработка видео. Нужен всегда и везде как зависимость
     svt-av1 # Кодек для рендера в av1 на проце
     imagemagick # Обработка изображений. Мб тоже нужен всегда
     vips # В 4 раза быстрее imagemagick?
     tree # Структура файлов в терминале
     gnugrep # Поиск в терминале
-    gawk # Обработка и анализ текста в терминале
     rsync # Синхронизация файлов
     bat # Аналог cat с подсветкой синтаксиса
-    xorg.xwininfo # Команда xprop. Статы окна, по типу класса
-    xorg.xrandr # Управление мониторами
-    xorg.xev # Узнать айдишник бинда
+    xrandr # Управление мониторами
+    xev # Узнать айдишник бинда
     xdg-utils # Set of command line tools that assist applications with a variety of desktop integration tasks
     playerctl # Управление медиа. Плей/пауза и тд
     amdgpu_top # Tool to display AMD GPU usage
     btop-rocm # Монитор ресурсов в терминале
-    htop
+    pkgsStable.nvtopPackages.full
     icoextract
-    rocmPackages.rocm-smi # Чтоб в btop было gpu
-    rocmPackages.rocblas # Для работы hip?
-    rocmPackages.hipblas # Для работы hip?
-    rocmPackages.clr # Для работы hip?
-    rocmPackages.rocm-core
-    rocmPackages.rocminfo
+    pkgsStable.rocmPackages.rocm-smi # Чтоб в btop было gpu
+    pkgsStable.rocmPackages.rocblas # Для работы hip?
+    pkgsStable.rocmPackages.hipblas # Для работы hip?
+    pkgsStable.rocmPackages.clr # Для работы hip?
+    pkgsStable.rocmPackages.rocm-core
+    pkgsStable.rocmPackages.rocminfo
     timer # A "sleep" with progress. Таймер на пельмени "timer 5m"
     libqalculate # Advanced calculator library
-    # fastfetch # Пишешь в теримнал и кидаешь всем со словами I use nixos btw
-    zoxide # Замена cd для частых каталогов
     fzf # Нечёткий поиск
     killall # Убить процессы. Мем, что в стоке не стоит
     libnotify # Вызов оповещений через "notify-send"
@@ -289,19 +263,15 @@
     udiskie #
     calf # Для изиефект
     lvm2 # Для изиефект
-    lsp-plugins # Для изиефект 
+    lsp-plugins # Для изиефект
     duf # Место
     eza # Replace for ls
-    gdu # Место на диске чекать
-    ncdu # Disk usage analyzer 
+    ncdu # Disk usage analyzer
     man # Documentation
     tldr # Documentation
     wev # Event viewer
-    ripdrag # Drag and drop 
+    ripdrag # Drag and drop
     gpu-screen-recorder #
-
-    alacritty 
-    kitty # Самый быстрый протокол отображения медиа, но ssh через жопу работает
 
     ##############
     ##   NUR    ##
@@ -314,7 +284,6 @@
     ##############
 
     firefox
-    ladybird
 
     ##########
     ## Docs ##
@@ -333,15 +302,13 @@
     ## File managers ##
     ###################
 
-    ranger # Terminal file manager
+    # ranger # Terminal file manager
     nautilus # File manager
     yazi # Terminal File manager
     thunar # GUI file manager
     catfish # File searching (for Thunar)
     xfce4-exo # Мб надо, чтоб терминал открывать в каталоге
     ffmpegthumbnailer # A lightweight video thumbnailer
-    # f3d # Fast and minimalist 3D viewer using VTK. Thumbnailer for 3D files, including glTF, stl, step, ply, obj, fbx.
-    # openscad # 3D model previews (stl, off, dxf, scad, csg). Этот именно для ranger, но мб пригодится и в других местах
 
     ##################
     ## File support ##
@@ -373,12 +340,10 @@
 
     tauon # Музыкальный плееер
     rhythmbox # Музыкальный плееер
-    #obs-studio # Запись видео
-    # picard # Массовый редактор метаданных музыки
+    picard # Массовый редактор метаданных музыки
     # mousai # Опенсорс шазам. Со временем просит платный api
     mpv # Смотреть видео
     imv # Смотреть картинки
-    qview # Умеет открывать всё, включая анимированный webp и avif
     gthumb
     feh # Нужен в большом количестве софта как зависимость. Может в avif, но криво
 
@@ -397,14 +362,14 @@
     # protonup-qt # Управлять версиями proton-ge для steam
     steam-run # На всякий случай
     mangohud # Фпс и нагрузку на пк показывает в играх
-    wineWowPackages.stableFull # support both 32- and 64-bit applications
+    wineWow64Packages.stableFull # support both 32- and 64-bit applications
     # wineWowPackages.staging # Можно назвать бета версией вайна
     winetricks # winetricks (all versions)
-    # wineWowPackages.waylandFull # native wayland support (unstable)
     protontricks # Running Winetricks commands for Proton-enabled games
     goverlay #
-    # lutris # Games launcher
-    heroic # Games launcher
+    lutris # Games launcher
+    #heroic # Games launcher
+    faugus-launcher # Запускать игры
     protonplus # Download proton to Steam Lutris etc
     prismlauncher # Minecraft
     # osu-lazer-bin # Osu
@@ -413,10 +378,11 @@
     ## Design ##
     ############
 
-    krita # Рисовать 1. 
+    pkgsStable.krita # Рисовать 1.
+    # darktable #
     # gimp # Рисовать 2. Потом выберу что оставить
     # blender-hip # 3д графика и рендер видео
-    # hyprpicker # color picker 
+    # hyprpicker # color picker
     # inkscape # Vector graphic editor
 
     ##################
@@ -443,7 +409,6 @@
     kdePackages.breeze-icons # qt6
     papirus-icon-theme
     material-icons
-    gruvbox-plus-icons
 
     ############
     ## Vulkan ##
@@ -466,7 +431,7 @@
     vkd3d # Чтоб wine игры запускались через vulkan, а не opengl (Direct3D 12)
     vkd3d-proton
     # vkbasalt # Баф Vulkan для улучшения визуальной графики игр https://github.com/DadSchoorse/vkBasalt
-   
+
     ###########
     ## Other ##
     ###########
@@ -476,19 +441,18 @@
     # google-fonts
     libva-utils # Проверяет работоспособность VAAPI?
     clinfo # Проверяет работоспособность OpenCL?
-    pamixer # PulseAudio cli (громкость редачу) 
+    pamixer # PulseAudio cli (громкость редачу)
 
     ######################
     ## Govno ##
     ######################
 
-    # Это рекомендуют ставить не на всю систему,
-    # а только на nix shell внутри проекта, где нужны эти пакеты
     # Python
-    python3Packages.pip # Python package manager (nvim его не видит)
-    python3
+    # python3Packages.pip # Python package manager (nvim его не видит)
+    # python3
+
     # Golang
-    # go # Go programming language
+    go # Go programming language
 
     cargo
     cmake
@@ -509,7 +473,6 @@
     xray # VPN
     sing-box # VPN
 
-
     lmstudio # Local AP
     sillytavern #
     koboldcpp #
@@ -519,6 +482,7 @@
     ############
 
     zip # Архивировать
+    file-roller # Архиватор от gnome
     unzip # Разархивировать
     unrar # Разархивировать
     gnutar # Для .tar?
@@ -527,8 +491,8 @@
     unar #
     peazip #
   ];
-  
+
   nixpkgs.config.permittedInsecurePackages = [
-  "ventoy-gtk3-1.1.07"
-];
+    "ventoy-gtk3-1.1.07"
+  ];
 }

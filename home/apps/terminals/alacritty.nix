@@ -1,7 +1,9 @@
-{ pkgs, ... }: {
-  programs.alacritty = { # Минимализм
+{pkgs, ...}: {
+  programs.alacritty = {
+    # Минимализм
     enable = true;
-    settings = { # https://alacritty.org/config-alacritty.html
+    settings = {
+      # https://alacritty.org/config-alacritty.html
       font.size = 12;
       mouse.hide_when_typing = true;
       window.padding = {

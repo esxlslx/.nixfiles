@@ -1,6 +1,8 @@
 {
   imports = [
     ./networking.nix
-    ./vpn.nix
+    ./throne.nix
+    ./bluetooth.nix
+    ./zapret.nix
   ];
 }

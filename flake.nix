@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -15,7 +16,7 @@
     };
 
     nix-flatpak = {
-    url = "github:gmodena/nix-flatpak/?ref=latest";
+      url = "github:gmodena/nix-flatpak/?ref=latest";
     };
 
     zen-browser = {
@@ -31,10 +32,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    awww = {
-    url = "git+https://codeberg.org/LGFae/awww";
-    };
-
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,32 +43,35 @@
     };
 
     nixcord = {
-    url = "github:kaylorben/nixcord";
-    inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:kaylorben/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     spicetify-nix = {
-    url = "github:Gerg-L/spicetify-nix";
-    inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    antigravity-nix = {
-      url = "github:jacopone/antigravity-nix";
+    zapret-discord-youtube = {
+      url = "github:kartavkun/zapret-discord-youtube";
       inputs.nixpkgs.follows = "nixpkgs";
-    }; 
+    };
   };
 
-  outputs = inputs@{
+  outputs = inputs @ {
     nixpkgs,
     self,
     home-manager,
     nur,
     nix-flatpak,
     stylix,
-    antigravity-nix,
     ...
-  }:
-  let
+  }: let
     system = "x86_64-linux";
     config = {
       allowUnfree = true;
@@ -93,21 +93,15 @@
         ./nixos/configuration.nix
         nur.modules.nixos.default
         nix-flatpak.nixosModules.nix-flatpak
-        stylix.nixosModules.stylix	
         home-manager.nixosModules.home-manager
         {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
             backupFileExtension = "backup";
-
             users.falguren = import ./home/home.nix;
-	    sharedModules = [
-	    inputs.nixcord.homeModules.nixcord
-	    ];
-
-	    extraSpecialArgs = {
-	    inherit inputs;
+            extraSpecialArgs = {
+              inherit inputs;
             };
           };
         }

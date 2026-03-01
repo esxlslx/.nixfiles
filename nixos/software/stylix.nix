@@ -1,15 +1,49 @@
-# Управление системной темой
-{ pkgs, config, ... }: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    inputs.stylix.nixosModules.stylix
+  ];
 
-  stylix = { # Wiki - https://stylix.danth.me/options/nixos.html
-
+  stylix = {
+    # Wiki - https://stylix.danth.me/options/nixos.html
     enable = true;
+    enableReleaseChecks = false;
     autoEnable = true;
 
-    polarity = "dark"; # "light" or "either". Если "either", то он сам определяет что будет красивее
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml"; # Если хочешь генерить тему из обоев, то удали эту строку
-    # image = config.lib.stylix.pixel "base00"; # Вместо обоев будет заливка фона одним цветом из темы
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml"; # Если хочешь генерить тему из обоев, то удали эту строку
+
+    #image = config.lib.stylix.pixel "base00"; # Вместо обоев будет заливка фона одним цветом из темы
     #image = /home/falguren/Pictures/Wallpapers/Sunset-Forrest.png; # Если хочешь норм обои, то просто укажи путь до изображения
+
+    #image = pkgs.fetchurl {
+    #  url = "https://w.wallhaven.cc/full/je/wallhaven-jewvzy.jpg";
+    #  hash = "sha256-UjQnjABGjGslIF0bXIH3B8R6i6E85nJRH7ayXToaYqw=";
+    #};
+
+    #colorGeneration = {
+    #  polarity = "dark";
+    #  scheme = "content";
+    #};
+
+    polarity = "dark"; # "light" or "either". Если "either", то он сам определяет что будет красивее
+
+    fonts = {
+      sansSerif = {
+        name = "Adwaita Sans";
+        package = pkgs.adwaita-fonts;
+      };
+      monospace = {
+        name = "JetBrainsMono Nerd Font";
+        package = pkgs.nerd-fonts.jetbrains-mono;
+      };
+      emoji = {
+        name = "Noto Color Emoji";
+        package = pkgs.noto-fonts-color-emoji;
+      };
+    };
 
     cursor = {
       package = pkgs.bibata-cursors;
@@ -17,32 +51,16 @@
       size = 18; # default = 32
     };
 
-    fonts = {
-
-      # Ширина символов одинаковая
-      monospace = { # default = DejaVu Sans Mono
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMonoNL Nerd Font Mono";
-      };
-
-      emoji = { # default = Noto Color Emoji
-        package = pkgs.noto-fonts-color-emoji;
-        name = "Noto Color Emoji";
-      };
-
-      # Без засечек
-      sansSerif = { # default = DejaVu Sans
-        package = pkgs.nerd-fonts.noto;
-        name = "NotoSans Nerd Font";
-      }; 
-
-      # С засечками
-      serif = { # default = DejaVu Serif
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Serif";
-        # package = pkgs.noto-fonts;
-        # name = "Noto Serif";
-      };
+    icons = {
+      enable = true;
+      dark = "MoreWaita";
+      package = pkgs.morewaita-icon-theme;
+      #dark = "rose-pine";
+      #package = pkgs.rose-pine-icon-theme;
+      #dark = "Colloid";
+      #package = pkgs.colloid-icon-theme;
     };
+    #targets = {
+    #};
   };
 }

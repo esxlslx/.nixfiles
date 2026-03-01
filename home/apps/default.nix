@@ -2,7 +2,7 @@
   imports = [
     ./browsers
     ./terminals
-    ./hx.nix
+    #./hx.nix
     ./nixcord.nix
     ./fastfetch.nix
     ./obs/obs.nix

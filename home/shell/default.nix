@@ -1,13 +1,14 @@
 {
   imports = [
-    ./fish.nix
-    ./gh.nix
-    ./git.nix
-    ./eza.nix
-    ./z.nix
-    ./starship.nix
-    ./rg.nix
-    ./fd.nix
     ./bat.nix
+    ./eza.nix
+    ./fd.nix
+    ./fish.nix
+    ./nh.nix
+    ./nvf.nix
+    ./ripgrep.nix
+    ./starship.nix
+    ./zoxide.nix
+    #./zsh.nix
   ];
 }

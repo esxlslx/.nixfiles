@@ -1,5 +1,5 @@
-{ ... }: {
-programs.fastfetch = {
+{...}: {
+  programs.fastfetch = {
     enable = true;
 
     settings = {
@@ -29,7 +29,7 @@ programs.fastfetch = {
           type = "title";
           color = {
             user = "green";
-            at   = "red";
+            at = "red";
             host = "blue";
           };
         }
@@ -56,11 +56,11 @@ programs.fastfetch = {
           key = "";
           format = "{pretty-name}";
         }
-	{
-	  type = "terminal";
-	  key = "";
-	  format = "{pretty-name}";
-	}
+        {
+          type = "terminal";
+          key = "";
+          format = "{pretty-name}";
+        }
 
         {
           type = "bluetooth";
@@ -68,11 +68,11 @@ programs.fastfetch = {
           format = "{name} {battery-percentage}";
         }
 
-	{
-	 type = "disk";
-	 key = "";
-	 format = "{size-used}/{size-total} - {size-percentage}";
-	}
+        {
+          type = "disk";
+          key = "";
+          format = "{size-used}/{size-total} - {size-percentage}";
+        }
 
         {
           type = "uptime";
