@@ -33,7 +33,8 @@
     osu-lazer-bin # appimage ver with online score
     steam-run # На всякий случай
     mangohud # Фпс и нагрузку на пк показывает в играх
-    wineWow64Packages.stableFull # support both 32- and 64-bit applications
+    #wineWow64Packages.stableFull # support both 32- and 64-bit applications
+    wineWow64Packages.stable #
     winetricks # winetricks (all versions)
     protontricks # Running Winetricks commands for Proton-enabled games
     goverlay #

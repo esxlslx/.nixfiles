@@ -36,41 +36,21 @@
       # Имитация файловой системы обычного линукса и пакеты для этого дела
       enable = true;
       libraries = with pkgs; [
-        # Для запуска Throne бинаря с гитхаб и V2rayN
-        kdePackages.qtbase
-        kdePackages.qttools
-        kdePackages.qtwayland
-        kdePackages.qtsvg
-        kdePackages.qtimageformats
-        util-linux
-        zlib
-        zstd
-        mesa
-        libGL
-        libglvnd
-        libxkbcommon
-        fontconfig
-        libX11
-        libXext
-        libXrandr
-        libXrender
-        libXcursor
-        libXxf86vm
-        libXi
-        libxcb
-        libXfixes
-        xcbutil
-        xcbutilkeysyms
-        xcbutilwm
-        xcbutilimage
-        xcbutilrenderutil
-        xcb-util-cursor
+        # Для большинства программ
+        stdenv.cc.cc
+        gtk3
         glib
-        dbus
-        krb5
-        stdenv.cc.cc.lib
-        zlib
-        openssl
+        cairo
+        gdk-pixbuf
+        pango
+        atk
+        at-spi2-atk
+        harfbuzz
+        libpng
+        expat
+        xorg.libX11
+        xorg.libXrandr
+        xorg.libxcb
 
         # Creamlinux
         gtk3
@@ -130,9 +110,9 @@
     gnome-disk-utility # Диски трогат
     thunderbird # Почтовый клиент для своей почты
     pavucontrol # PulseAudio Volume Control
-    networkmanagerapplet # Tray for network manager
+    # networkmanagerapplet # Tray for network manager
     brightnessctl # Brightness control for laptop
-    blueman # Bluetooth
+    # blueman # Bluetooth
     helvum # Прокидка звука в другие источники pipewire
     gparted # Форматирование дисков
     haguichi # Frontend hamachi
@@ -156,6 +136,8 @@
     bazaar # Check Flatpaks
     collector #
     firefox
+    materialgram
+    ayugram-desktop
 
     ##############
     ## Terminal ##
@@ -169,7 +151,6 @@
     yt-dlp # Скачивать и смотреть медиа с разных сайтов
     wl-clipboard
     # cliphist
-    # appimage-run
     trash-cli
     android-tools # ADB
     adb-sync
@@ -186,6 +167,7 @@
     xev # Узнать айдишник бинда
     xdg-utils # Set of command line tools that assist applications with a variety of desktop integration tasks
     playerctl # Управление медиа. Плей/пауза и тд
+    mediainfo # Info fow FLAC
     amdgpu_top # Tool to display AMD GPU usage
     btop-rocm # Монитор ресурсов в терминале
     nvtopPackages.full
@@ -205,7 +187,6 @@
     ddcutil # Прикол для управление яркости моего моника
     ddcutil-service # Прикол для управление яркости моего моника
     lm_sensors # Сенсоры
-    httpie # interacting with APIs & HTTP servers
     grim # Нужно было для скринов хз
     slurp # Нужно было для скринов хз
     miller # Like awk, sed, cut, join, and sort for data formats such as CSV, TSV, JSON, JSON Lines, and positionally-indexed
@@ -227,6 +208,11 @@
     wev # Event viewer
     ripdrag # Drag and drop
     gpu-screen-recorder #
+    microfetch
+    nix-melt
+    speedtest-go
+    bitwarden-cli
+    nur.repos.zerozawa.mikusays
 
     ##########
     ## Docs ##
@@ -249,7 +235,6 @@
     yazi # Terminal File manager
     thunar # GUI file manager
     catfish # File searching (for Thunar)
-    xfce4-exo # Мб надо, чтоб терминал открывать в каталоге
     ffmpegthumbnailer # A lightweight video thumbnailer
 
     ##################
@@ -362,6 +347,8 @@
 
     cargo
     cmake
+    go
+    python313
 
     # Protobuf
     protols # LSP

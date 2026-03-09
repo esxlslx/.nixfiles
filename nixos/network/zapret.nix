@@ -6,4 +6,7 @@
     enable = true;
     configName = "general(ALT9)";
   };
+
+  systemd.services.zapret-discord-youtube.after = ["network.target"];
+  systemd.services.zapret-discord-youtube.wants = ["network.target"];
 }

@@ -3,7 +3,6 @@
     ./apps
     ./shell
     ./de-wm
-    ./pkgs.nix
   ];
 
   programs.home-manager.enable = true;

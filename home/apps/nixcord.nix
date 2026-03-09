@@ -1,6 +1,7 @@
 {inputs, ...}: {
   imports = [
     inputs.nixcord.homeModules.nixcord
+    /home/falguren/.nixcord/nixcordlsfm.nix
   ];
   programs.nixcord = {
     enable = true;
@@ -14,6 +15,7 @@
       autoUpdate = true;
       plugins = {
         ClearURLs.enable = true;
+        callTimer.enable = true;
         anonymiseFileNames.enable = true;
         betterUploadButton.enable = true;
         gameActivityToggle.enable = true;
@@ -24,62 +26,27 @@
         validReply.enable = true;
         validUser.enable = true;
         voiceDownload.enable = true;
+        voiceMessages.enable = true;
         voiceChatDoubleClick.enable = true;
+        viewRawVariant.enable = true;
+        viewIcons.enable = true;
+        volumeBooster.enable = true;
         whoReacted.enable = true;
-        noUnblockToJump.enable = true;
+        noBlockedMessages.enable = true;
         questify.enable = true;
         youtubeAdblock.enable = true;
         FullVCPFP.enable = true;
         SaveFavoriteGIFs.enable = true;
-
-        fakeNitro = {
+        silentTyping.enable = true;
+        spotifyActivityToggle.enable = true;
+        spotifyCrack.enable = true;
+        petpet.enable = true;
+        betterFolders = {
           enable = true;
-          enableEmojiBypass = true;
-          emojiSize = 48.0;
-          transformEmojis = false;
-          enableStickerBypass = true;
-          stickerSize = 160.0;
-          transformStickers = true;
-          transformCompoundSentence = false;
-          enableStreamQualityBypass = true;
-          useStickerHyperLinks = true;
-          useEmojiHyperLinks = true;
-          hyperLinkText = "{{NAME}}";
-          disableEmbedPermissionCheck = false;
+          closeAllFolders = true;
+          closeAllHomeButton = true;
+          closeOthers = true;
         };
-
-        silentTyping = {
-          enable = true;
-          hideMembersListTypingIndicators = false;
-          hideChatBoxTypingIndicators = false;
-          enabledGlobally = true;
-          chatIcon = true;
-          defaultHidden = true;
-          enabledLocations = "";
-          disabledLocations = "";
-          chatIconLeftClickAction = "channel";
-          chatIconMiddleClickAction = "settings";
-          chatIconRightClickAction = "global";
-          chatContextMenu = true;
-        };
-
-        spotifyCrack = {
-          enable = true;
-          noSpotifyAutoPause = true;
-          keepSpotifyActivityOnIdle = false;
-        };
-
-        voiceMessages = {
-          enable = true;
-          echoCancellation = true;
-          noiseSuppression = true;
-        };
-
-        volumeBooster = {
-          enable = true;
-          multiplier = 2.0;
-        };
-
         gifCollections = {
           enable = true;
           collectionPrefix = "gc:";

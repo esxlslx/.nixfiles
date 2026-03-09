@@ -4,7 +4,7 @@
   users.users.falguren = {
     isNormalUser = true;
     description = "falguren";
-    extraGroups = ["networkmanager" "wheel" "input" "libvirtd" "storage" "docker" "video" "i2c" "adbusers"];
+    extraGroups = ["networkmanager" "wheel" "input" "libvirtd" "storage" "docker" "video" "i2c" "adbusers" "plugdev"];
     shell = pkgs.fish;
   };
 }

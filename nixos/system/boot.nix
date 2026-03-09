@@ -7,15 +7,13 @@
     loader = {
       systemd-boot = {
         enable = true;
-        editor = false;
+        editor = true;
       };
       efi.canTouchEfiVariables = true;
-      timeout = 2;
+      timeout = 0;
     };
 
     tmp.cleanOnBoot = true;
-
-    initrd.kernelModules = ["amdgpu"]; # Мб не обязательно
 
     extraModprobeConfig = ''options amdgpu ppfeaturemask=0xffffffff v4l2loopback exclusive_caps=1 devices=1 video_nr=1 card_label="OBS Cam"'';
 
@@ -28,7 +26,6 @@
     ];
     kernelModules = [
       "v4l2loopback"
-      "amdgpu"
     ];
   };
   security.polkit.enable = true;
