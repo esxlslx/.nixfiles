@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
 in {
   imports = [
@@ -12,6 +16,7 @@ in {
       beautifulLyrics
       hidePodcasts
       shuffle
+      lastfm
     ];
   };
 }

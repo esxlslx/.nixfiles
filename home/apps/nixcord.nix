@@ -1,15 +1,12 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     inputs.nixcord.homeModules.nixcord
     /home/falguren/.nixcord/nixcordlsfm.nix
   ];
   programs.nixcord = {
     enable = true;
-    discord.enable = true;
+    discord.equicord.enable = true;
+    discord.vencord.enable = false;
     equibop.enable = true;
     config = {
       autoUpdate = true;
