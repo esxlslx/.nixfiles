@@ -91,21 +91,12 @@
             useUserPackages = true;
             backupFileExtension = "backup";
             extraSpecialArgs = {inherit inputs;};
-            users.falguren = import ./home/home.nix;
+            users.bezydeynost = import ./home/home.nix;
             sharedModules = [
               nur.modules.homeManager.default
             ];
           };
         }
-        ({
-          config,
-          pkgs,
-          ...
-        }: {
-          nixpkgs.overlays = [
-            (import ./pkgs/default.nix)
-          ];
-        })
       ];
     };
   };

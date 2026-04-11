@@ -29,8 +29,6 @@
     ];
   };
 
-  services.displayManager.gdm.enable = true;
-
   security.polkit.enable = true;
   systemd.settings.Manager = {
     DefaultTimeoutStopSec = "10s";

@@ -21,8 +21,8 @@
   };
 
   home = {
-    username = "falguren";
-    homeDirectory = "/home/falguren";
+    username = "bezydeynost";
+    homeDirectory = "/home/bezydeynost";
     stateVersion = "25.11";
     sessionVariables = {
       EDITOR = "nvim";

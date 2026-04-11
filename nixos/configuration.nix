@@ -13,7 +13,7 @@
   nix = {
     settings = {
       experimental-features = ["nix-command" "flakes"];
-      trusted-users = ["root" "falguren"];
+      trusted-users = ["root" "bezydeynost"];
       auto-optimise-store = true;
       warn-dirty = false;
     };

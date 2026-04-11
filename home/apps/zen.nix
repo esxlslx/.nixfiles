@@ -29,8 +29,8 @@
       };
     };
 
-    profiles.falguren = {
-      name = "falguren";
+    profiles.bezydeynost = {
+      name = "bezydeynost";
       isDefault = true;
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         bitwarden
@@ -62,6 +62,6 @@
     };
   };
 
-  stylix.targets.zen-browser.profileNames = ["falguren"];
+  stylix.targets.zen-browser.profileNames = ["bezydeynost"];
   stylix.targets.zen-browser.enable = true;
 }

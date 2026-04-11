@@ -13,7 +13,7 @@
     enableReleaseChecks = false;
     autoEnable = true;
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
 
     polarity = "dark";
 
@@ -48,8 +48,10 @@
       package = pkgs.colloid-icon-theme;
     };
 
-    targets = {
-      gtk.enable = true;
-    };
+    #targets = {
+    #  gtk.enable = true;
+    #  kde.enable = false;
+    #  qt.enable = false;
+    #};
   };
 }

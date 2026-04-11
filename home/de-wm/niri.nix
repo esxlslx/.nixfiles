@@ -33,9 +33,7 @@
           Mod+T			        hotkey-overlay-title="Open Ghostty" { spawn "ghostty"; }
           Mod+Shift+Return		hotkey-overlay-title="Open Kitty" { spawn "kitty"; }
           Mod+D			        hotkey-overlay-title="Application Launcher" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
-          //Mod+D		       	repeat=false { spawn "vicinae" "toggle"; }
           Mod+V		        	hotkey-overlay-title="Clipboard Manager" repeat=false { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
-          //Mod+V		       	hotkey-overlay-title="Clipboard Manager" repeat=false { spawn "vicinae" "vicinae://extensions/vicinae/clipboard/history"; }
           Mod+Comma	       		hotkey-overlay-title="Settings" { spawn "dms" "ipc" "call" "settings" "focusOrToggle"; }
           Mod+N		        	hotkey-overlay-title="Notifications History" { spawn "dms" "ipc" "call" "notifications" "open"; }
           Mod+M			        hotkey-overlay-title="Task Manager" { spawn "dms" "ipc" "call" "processlist" "focusOrToggle"; }
@@ -43,7 +41,7 @@
           // === Other Apps ===
           Mod+Shift+C			{ spawn "dms" "ipc" "call" "color-picker" "toggle"; }
           Mod+Ctrl+P			{ spawn "dms" "ipc" "call" "dankdash" "wallpaper"; }
-          Mod+Shift+P			{ spawn-sh "/home/falguren/.config/niri/script/off.sh"; }
+          Mod+Shift+P			{ spawn-sh "/home/bezydeynost/.config/niri/script/off.sh"; }
 
           // === Security ===
           Mod+Ctrl+Delete		{ quit; }
@@ -276,8 +274,6 @@
 
       layout {
       	gaps 10
-      	//center-focused-column "on-overflow"
-      	//empty-workspace-above-first
       	always-center-single-column
        	background-color "transparent"
 

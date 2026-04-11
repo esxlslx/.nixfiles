@@ -1,9 +1,10 @@
 {pkgs, ...}: {
   programs.fish.enable = true;
 
-  users.users.falguren = {
+  users.users.bezydeynost = {
     isNormalUser = true;
-    description = "falguren";
+    uid = 1000;
+    description = "bezydeynost";
     extraGroups = ["networkmanager" "wheel" "input" "libvirtd" "storage" "docker" "video" "i2c" "adbusers" "plugdev"];
     shell = pkgs.fish;
   };

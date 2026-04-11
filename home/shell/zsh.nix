@@ -14,7 +14,7 @@
 
     # Плюс это https://github.com/ohmyzsh/ohmyzsh/wiki/Cheatsheet
     shellAliases = let
-      flakeDir = "~/nixos-private-dots";
+      flakeDir = "~/.nixfiles";
     in {
       rbs = "sudo nixos-rebuild switch --impure --flake ${flakeDir}"; # Применить новый конфиг сразу
       rbb = "sudo nixos-rebuild boot --impure --flake ${flakeDir}"; # Применить новый конфиг после ребута пк
@@ -106,4 +106,3 @@
     zsh-nix-shell # zsh plugin that lets you use zsh in nix-shell shell
   ];
 }
-

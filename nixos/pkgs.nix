@@ -1,21 +1,4 @@
 {pkgs, ...}: {
-  systemd = {
-    # Запуск гномовского полкита. Окно ввода пароля для рут доступа
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = ["graphical-session.target"];
-      wants = ["graphical-session.target"];
-      after = ["graphical-session.target"];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
-  };
-
   services = {
     gvfs.enable = true; # Mount, trash, and other functionalities for Thunar file manager
     tumbler.enable = true; # Thumbnail support for Thunar file manager
@@ -95,7 +78,6 @@
 
     quickshell
     awww # Wallpapers
-    helium-browser
 
     #########
     ## GUI ##
@@ -112,9 +94,6 @@
     crosspipe # Прокидка звука в другие источники pipewire
     gparted # Форматирование дисков
     # haguichi # Frontend hamachi
-    kdePackages.kate # Text editor
-    kdePackages.okular
-    kdePackages.kdenlive # Видеоредактор
     localsend # Кидать файлы
     lsfg-vk # Framegen losless scaling
     lsfg-vk-ui # Framegen losless scaling
@@ -135,6 +114,27 @@
     ayugram-desktop
     element-desktop
     tor-browser
+    nur.repos.lonerOrz.helium
+
+    #########
+    ## KDE ##
+    #########
+
+    kdePackages.okular
+    kdePackages.kdenlive # Видеоредактор
+    kdePackages.discover # Optional: Software center for Flatpaks/firmware updates
+    kdePackages.kcalc # Calculator
+    kdePackages.kcharselect # Character map
+    kdePackages.kcolorchooser # Color picker
+    kdePackages.ksystemlog # System log viewer
+    kdePackages.sddm-kcm # SDDM configuration module
+    kdiff3 # File/directory comparison tool
+    kdePackages.qt6ct
+    libsForQt5.qt5ct
+    catppuccin-kde
+    catppuccin-kvantum
+    kdePackages.qtstyleplugin-kvantum
+    haruna
 
     ##############
     ## Terminal ##
@@ -166,7 +166,6 @@
     mediainfo # Info fow FLAC
     amdgpu_top # Tool to display AMD GPU usage
     btop-rocm # Монитор ресурсов в терминале
-    #nvtopPackages.full
     nvtopPackages.amd
     icoextract
     rocmPackages.rocm-smi # Чтоб в btop было gpu
@@ -176,7 +175,6 @@
     rocmPackages.rocm-core
     rocmPackages.rocminfo
     timer # A "sleep" with progress. Таймер на пельмени "timer 5m"
-    libqalculate # Advanced calculator library
     fzf # Нечёткий поиск
     killall # Убить процессы. Мем, что в стоке не стоит
     libnotify # Вызов оповещений через "notify-send"
@@ -332,8 +330,6 @@
     clinfo # Проверяет работоспособность OpenCL?
     pamixer # PulseAudio cli (громкость редачу)
     # droidcam
-    kdePackages.qt6ct
-    libsForQt5.qt5ct
 
     ###########
     ## Govno ##
