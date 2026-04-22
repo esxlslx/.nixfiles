@@ -8,6 +8,7 @@
     udisks2.enable = true;
     power-profiles-daemon.enable = true;
     upower.enable = true;
+    cloudflare-warp.enable = true;
     # logmein-hamachi.enable = true;
     # archisteamfarm = {}; # Фарм карточек стима афк. Просто раскомментить мало, надо настроить
   };
@@ -34,6 +35,7 @@
         libX11
         libXrandr
         libxcb
+        zstd
 
         # Creamlinux
         webkitgtk_4_1
@@ -52,13 +54,22 @@
       enable = true;
       binfmt = true;
       package = pkgs.appimage-run.override {
-        # Зависимости для нужных мне приложений
-        extraPkgs = pkgs: with pkgs; [libpng libpng12 libepoxy pcre2 double-conversion];
+        extraPkgs = pkgs:
+          with pkgs; [
+            libpng
+            libpng12
+            libepoxy
+            pcre2
+            double-conversion
+            webkitgtk_4_1
+            libsoup_3
+            zstd
+          ];
       };
     };
 
     thunar = {
-      enable = true;
+      enable = false;
       plugins = with pkgs; [
         thunar-media-tags-plugin # Tagging and renaming features for media files
         thunar-archive-plugin # File context menus for archives
@@ -78,6 +89,7 @@
 
     quickshell
     awww # Wallpapers
+    darktable
 
     #########
     ## GUI ##
@@ -128,6 +140,9 @@
     kdePackages.kcolorchooser # Color picker
     kdePackages.ksystemlog # System log viewer
     kdePackages.sddm-kcm # SDDM configuration module
+    kdePackages.kdeconnect-kde
+    kdePackages.dolphin
+    kdePackages.kservice
     kdiff3 # File/directory comparison tool
     kdePackages.qt6ct
     libsForQt5.qt5ct
@@ -160,7 +175,6 @@
     rsync # Синхронизация файлов
     bat # Аналог cat с подсветкой синтаксиса
     xrandr # Управление мониторами
-    xev # Узнать айдишник бинда
     xdg-utils # Set of command line tools that assist applications with a variety of desktop integration tasks
     playerctl # Управление медиа. Плей/пауза и тд
     mediainfo # Info fow FLAC
@@ -182,15 +196,14 @@
     ddcutil # Прикол для управление яркости моего моника
     ddcutil-service # Прикол для управление яркости моего моника
     lm_sensors # Сенсоры
-    grim # Нужно было для скринов хз
-    slurp # Нужно было для скринов хз
+    grim
+    slurp
     miller # Like awk, sed, cut, join, and sort for data formats such as CSV, TSV, JSON, JSON Lines, and positionally-indexed
     usbutils # lsusb
     f2fs-tools # f2fs filesystem
     exfat # exFAT filesystem
     xwayland-satellite # Для нири
     xwayland # Для нири
-    nwg-look # GTK настройки
     udiskie #
     calf # Для изиефект
     lvm2 # Для изиефект
@@ -205,8 +218,8 @@
     gpu-screen-recorder #
     microfetch
     nix-melt
-    bitwarden-cli
     nur.repos.zerozawa.mikusays
+    xhost
 
     ##########
     ## Docs ##
@@ -225,7 +238,7 @@
 
     nautilus # File manager
     yazi # Terminal File manager
-    thunar # GUI file manager
+    # thunar # GUI file manager
     catfish # File searching (for Thunar)
     ffmpegthumbnailer # A lightweight video thumbnailer
 
@@ -258,13 +271,14 @@
     ###########
 
     tauon # Музыкальный плееер
+    deadbeef
     rhythmbox # Музыкальный плееер
     picard # Массовый редактор метаданных музыки
     mousai # Опенсорс шазам. Со временем просит платный api
     mpv # Смотреть видео
     imv # Смотреть картинки
-    gthumb
     feh # Нужен в большом количестве софта как зависимость. Может в avif, но криво
+    loupe
 
     ############
     ## Design ##
@@ -353,8 +367,6 @@
     sing-box # VPN
 
     lmstudio # Local AP
-    sillytavern #
-    koboldcpp #
     ventoy-full-gtk
 
     ############

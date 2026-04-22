@@ -7,6 +7,8 @@
       };
     };
 
+    waydroid.enable = true;
+
     spiceUSBRedirection.enable = true; # Connect USB devices to libvirt VMs, both local and remote.
 
     libvirtd = {

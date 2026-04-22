@@ -39,7 +39,7 @@
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";
-      size = 16; # default = 32
+      size = 24; # default = 32
     };
 
     icons = {

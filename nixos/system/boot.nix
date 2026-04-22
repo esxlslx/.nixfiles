@@ -19,7 +19,7 @@
 
     extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
 
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "quiet"
       "splash"

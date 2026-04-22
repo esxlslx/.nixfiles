@@ -1,7 +1,6 @@
 {inputs, ...}: {
   imports = [
     inputs.nixcord.homeModules.nixcord
-    /home/bezydeynost/.nixmodules/nixcordlsfm.nix
   ];
   programs.nixcord = {
     enable = true;
@@ -32,6 +31,9 @@
         questify.enable = true;
         youtubeAdblock.enable = true;
         FullVCPFP.enable = true;
+        fakeNitro.enable = true;
+        fakeNitro.enableEmojiBypass = true;
+        fakeNitro.enableStickerBypass = true;
         SaveFavoriteGIFs.enable = true;
         silentTyping.enable = true;
         spotifyActivityToggle.enable = true;

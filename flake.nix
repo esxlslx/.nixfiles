@@ -58,6 +58,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zapret-discord-youtube = {
       url = "github:kartavkun/zapret-discord-youtube";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -73,6 +78,7 @@
   };
 
   outputs = inputs @ {
+    self,
     nixpkgs,
     home-manager,
     nur,
@@ -84,6 +90,10 @@
       modules = [
         ./nixos/configuration.nix
         nur.modules.nixos.default
+        {
+          nixpkgs.overlays = [inputs.niri.overlays.niri];
+        }
+
         home-manager.nixosModules.home-manager
         {
           home-manager = {

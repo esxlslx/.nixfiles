@@ -30,6 +30,10 @@
     };
   };
 
+  environment.sessionVariables = {
+    TERMINAL = "ghostty";
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "25.11";
