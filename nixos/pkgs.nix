@@ -225,7 +225,6 @@
     nur.repos.zerozawa.mikusays
     xhost
     scrcpy
-    v4l-utils
 
     ##########
     ## Docs ##
