@@ -15,7 +15,10 @@
 
     tmp.cleanOnBoot = true;
 
-    extraModprobeConfig = ''options amdgpu ppfeaturemask=0xffffffff v4l2loopback exclusive_caps=1 devices=1 video_nr=1 card_label="OBS Cam"'';
+    extraModprobeConfig = ''
+      options amdgpu ppfeaturemask=0xffffffff
+      v4l2loopback exclusive_caps=1 devices=1 video_nr=1 card_label="Virtual Camera"
+    '';
 
     extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
 

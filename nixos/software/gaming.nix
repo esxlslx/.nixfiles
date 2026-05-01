@@ -37,7 +37,7 @@
     winetricks # winetricks (all versions)
     protontricks # Running Winetricks commands for Proton-enabled games
     goverlay #
-    lutris # Games launcher
+    #lutris # Games launcher
     faugus-launcher # Запускать игры
     protonplus # Download proton to Steam Lutris etc
     ryubing

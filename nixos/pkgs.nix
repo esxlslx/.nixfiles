@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   services = {
     gvfs.enable = true; # Mount, trash, and other functionalities for Thunar file manager
-    tumbler.enable = true; # Thumbnail support for Thunar file manager
+    # tumbler.enable = true; # Thumbnail support for Thunar file manager
     flatpak.enable = true;
     xserver.enable = true;
     printing.enable = true;
@@ -78,9 +78,11 @@
     };
 
     xfconf.enable = true; # For Thunar configs
-  };
+    obs-studio.enableVirtualCamera = true;
 
-  programs.obs-studio.enableVirtualCamera = true;
+    niri.enable = true;
+    niri.useNautilus = false;
+  };
 
   environment.systemPackages = with pkgs; [
     ###############
@@ -99,7 +101,6 @@
     # ksnip # Скрин экрана. Аналог - Flameshot
     qbittorrent-enhanced
     bitwarden-desktop # Password manager
-    keepassxc
     throne # Vless
     gnome-disk-utility # Диски трогат
     pavucontrol # PulseAudio Volume Control
@@ -123,11 +124,12 @@
     gpu-screen-recorder-gtk # Fast record video
     bazaar # Check Flatpaks
     collector #
-    materialgram
+    telegram-desktop
     ayugram-desktop
     element-desktop
     tor-browser
     nur.repos.lonerOrz.helium
+    distrobox
 
     #########
     ## KDE ##
@@ -166,6 +168,7 @@
     trash-cli
     android-tools # ADB
     adb-sync
+    v4l-utils
     ntfs3g # Для NTFS разделов
     ffmpeg_7 # Обработка видео. Нужен всегда и везде как зависимость
     svt-av1 # Кодек для рендера в av1 на проце
@@ -221,6 +224,8 @@
     nix-melt
     nur.repos.zerozawa.mikusays
     xhost
+    scrcpy
+    v4l-utils
 
     ##########
     ## Docs ##
@@ -240,7 +245,7 @@
     nautilus # File manager
     yazi # Terminal File manager
     # thunar # GUI file manager
-    catfish # File searching (for Thunar)
+    #catfish # File searching (for Thunar)
     ffmpegthumbnailer # A lightweight video thumbnailer
 
     ##################
@@ -277,7 +282,7 @@
     picard # Массовый редактор метаданных музыки
     mousai # Опенсорс шазам. Со временем просит платный api
     mpv # Смотреть видео
-    imv # Смотреть картинки
+    #imv # Смотреть картинки
     feh # Нужен в большом количестве софта как зависимость. Может в avif, но криво
     loupe
 
@@ -344,7 +349,7 @@
     libva-utils # Проверяет работоспособность VAAPI?
     clinfo # Проверяет работоспособность OpenCL?
     pamixer # PulseAudio cli (громкость редачу)
-    # droidcam
+    droidcam
 
     ###########
     ## Govno ##
@@ -386,6 +391,6 @@
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
-    "ventoy-gtk3-1.1.10"
+    "ventoy-gtk3-1.1.12"
   ];
 }

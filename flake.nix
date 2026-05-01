@@ -27,12 +27,6 @@
       url = "github:AvengeMedia/dms-plugin-registry";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixcord = {
       url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -90,10 +84,6 @@
       modules = [
         ./nixos/configuration.nix
         nur.modules.nixos.default
-        {
-          nixpkgs.overlays = [inputs.niri.overlays.niri];
-        }
-
         home-manager.nixosModules.home-manager
         {
           home-manager = {

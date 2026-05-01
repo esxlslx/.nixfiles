@@ -47,11 +47,5 @@
       dark = "Colloid";
       package = pkgs.colloid-icon-theme;
     };
-
-    #targets = {
-    #  gtk.enable = true;
-    #  kde.enable = false;
-    #  qt.enable = false;
-    #};
   };
 }
