@@ -13,7 +13,7 @@
     enableReleaseChecks = false;
     autoEnable = true;
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
 
     polarity = "dark";
 

@@ -4,98 +4,88 @@
 
     settings = {
       logo = {
-        source = "~/.config/fastfetch/miku.txt";
+        source = "~/.config/fastfetch/pngs/Shinobu.png";
+        height = 20;
         padding = {
-          top = 1;
-          left = 1;
+          top = 2;
+          right = 4;
+          left = 4;
         };
       };
 
       display = {
-        separator = " ";
+        separator = " ▸ ";
         color = {
-          keys = "magenta";
-        };
-        size = {
-          ndigits = 0;
-          maxPrefix = "GB";
+          keys = "green";
         };
       };
 
       modules = [
-        "break"
-
+        "title"
+        "separator"
         {
-          type = "title";
-          color = {
-            user = "green";
-            at = "red";
-            host = "blue";
-          };
+          type = "custom";
+          format = "{#90}╭──────────── {#32}Software {#90}────────────";
         }
-
         {
           type = "os";
-          key = "󰓎";
-          format = "{pretty-name}";
+          key = "│ OS";
         }
-
         {
-          type = "os";
-          key = "󰒕";
-          format = "Hatsune Miku";
+          type = "kernel";
+          key = "│ Kernel";
         }
-
         {
           type = "packages";
-          key = "";
+          key = "│ Packages";
         }
-
+        {
+          type = "shell";
+          key = "│ Shell";
+        }
         {
           type = "wm";
-          key = "";
-          format = "{pretty-name}";
+          key = "│ WM";
         }
         {
           type = "terminal";
-          key = "";
-          format = "{pretty-name}";
+          key = "│ Terminal";
         }
-
         {
-          type = "bluetooth";
-          key = "";
-          format = "{name} {battery-percentage}";
+          type = "custom";
+          format = "{#90}├──────────── {#32}Hardware {#90}────────────";
         }
-
+        {
+          type = "host";
+          key = "│ Host";
+        }
+        {
+          type = "cpu";
+          key = "│ CPU";
+        }
+        {
+          type = "gpu";
+          key = "│ GPU";
+        }
+        {
+          type = "memory";
+          key = "│ Memory";
+        }
         {
           type = "disk";
-          key = "";
-          format = "{size-used}/{size-total} - {size-percentage}";
+          key = "│ Disk";
         }
-
+        {
+          type = "custom";
+          format = "{#90}├───────────── {#32}Uptime {#90}─────────────";
+        }
         {
           type = "uptime";
-          key = "";
-          format = "{formatted}";
+          key = "│ Uptime";
         }
-
         {
-          type = "command";
-          key = "󰃭";
-          text = ''
-            modify_install=$(stat -c %W /)
-            current=$(date +%s)
-            time_progression=$((current - modify_install))
-            days_difference=$((time_progression / 86400))
-            echo $days_difference days
-          '';
-        }
-
-        {
-          type = "colors";
-          key = "󰌁";
-          symbol = "circle";
+          type = "custom";
+          format = "{#90}╰──────────────────────────────────";
         }
       ];
     };
