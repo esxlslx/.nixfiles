@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   services = {
-    gvfs.enable = true; # Mount, trash, and other functionalities for Thunar file manager
-    # tumbler.enable = true; # Thumbnail support for Thunar file manager
+    gvfs.enable = true;
     flatpak.enable = true;
     xserver.enable = true;
     printing.enable = true;
@@ -10,17 +9,14 @@
     upower.enable = true;
     cloudflare-warp.enable = true;
     # logmein-hamachi.enable = true;
-    # archisteamfarm = {}; # Фарм карточек стима афк. Просто раскомментить мало, надо настроить
   };
 
   systemd.services.lactd.enable = true;
 
   programs = {
     nix-ld = {
-      # Имитация файловой системы обычного линукса и пакеты для этого дела
       enable = true;
       libraries = with pkgs; [
-        # Для большинства программ
         stdenv.cc.cc
         glib
         gtk3
@@ -37,7 +33,6 @@
         libxcb
         zstd
 
-        # Creamlinux
         webkitgtk_4_1
         libsoup_3
         cairo
@@ -68,16 +63,6 @@
       };
     };
 
-    thunar = {
-      enable = false;
-      plugins = with pkgs; [
-        thunar-media-tags-plugin # Tagging and renaming features for media files
-        thunar-archive-plugin # File context menus for archives
-        thunar-volman # Automatic management of removable drives and media
-      ];
-    };
-
-    xfconf.enable = true; # For Thunar configs
     obs-studio.enableVirtualCamera = true;
 
     niri.enable = true;
@@ -85,20 +70,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    ###############
-    ## Some apps ##
-    ###############
-
-    quickshell
-    awww # Wallpapers
-    darktable
-
-    #########
-    ## GUI ##
-    #########
-
     flameshot
-    # ksnip # Скрин экрана. Аналог - Flameshot
     qbittorrent-enhanced
     bitwarden-desktop # Password manager
     throne # Vless
@@ -107,7 +79,6 @@
     brightnessctl # Brightness control for laptop
     crosspipe # Прокидка звука в другие источники pipewire
     gparted # Форматирование дисков
-    # haguichi # Frontend hamachi
     localsend # Кидать файлы
     lsfg-vk # Framegen losless scaling
     lsfg-vk-ui # Framegen losless scaling
@@ -130,10 +101,8 @@
     tor-browser
     nur.repos.lonerOrz.helium
     distrobox
-
-    #########
-    ## KDE ##
-    #########
+    darktable
+    firefox
 
     kdePackages.okular
     kdePackages.kdenlive # Видеоредактор
@@ -153,10 +122,6 @@
     catppuccin-kvantum
     kdePackages.qtstyleplugin-kvantum
     haruna
-
-    ##############
-    ## Terminal ##
-    ##############
 
     openssl
     wget
@@ -220,15 +185,14 @@
     wev # Event viewer
     ripdrag # Drag and drop
     gpu-screen-recorder #
-    microfetch
+    microfetch # I use nixos btw
     nix-melt
     nur.repos.zerozawa.mikusays
     xhost
     scrcpy
-
-    ##########
-    ## Docs ##
-    ##########
+    turntable
+    quickshell
+    awww # Wallpapers
 
     libreoffice-fresh # Редактировать документы
     onlyoffice-desktopeditors
@@ -237,19 +201,9 @@
     hunspellDicts.en_US # Словарь для проверки орфографии
     hunspellDicts.uk_UA # EСловарь для проверки орфографии
 
-    ###################
-    ## File managers ##
-    ###################
-
     nautilus # File manager
     yazi # Terminal File manager
-    # thunar # GUI file manager
-    #catfish # File searching (for Thunar)
     ffmpegthumbnailer # A lightweight video thumbnailer
-
-    ##################
-    ## File support ##
-    ##################
 
     kdePackages.kimageformats # Image format plugins for Qt 6
     kdePackages.qtimageformats # Plugins for additional image formats: TIFF, MNG, TGA, WBMP
@@ -271,43 +225,22 @@
     imath # EXR format support
     openexr # High dynamic-range (HDR) image file format
 
-    ###########
-    ## Media ##
-    ###########
-
     tauon # Музыкальный плееер
-    deadbeef
     rhythmbox # Музыкальный плееер
     picard # Массовый редактор метаданных музыки
     mousai # Опенсорс шазам. Со временем просит платный api
     mpv # Смотреть видео
-    #imv # Смотреть картинки
+    # imv # Смотреть картинки
     feh # Нужен в большом количестве софта как зависимость. Может в avif, но криво
     loupe
-
-    ############
-    ## Design ##
-    ############
 
     krita # Рисовать
     # blender-hip # 3д графика и рендер видео
 
-    ##################
-    ## Productivity ##
-    ##################
-
     obsidian # Заметки
-
-    #########
-    ## IDE ##
-    #########
 
     neovim
     vim
-
-    ###########
-    ## Icons ##
-    ###########
 
     adwaita-icon-theme
     adwaita-qt
@@ -316,10 +249,6 @@
     kdePackages.breeze-icons # qt6
     papirus-icon-theme
     material-icons
-
-    ############
-    ## Vulkan ##
-    ############
 
     glslang
     spirv-cross
@@ -339,10 +268,6 @@
     vkd3d-proton
     # vkbasalt # Баф Vulkan для улучшения визуальной графики игр https://github.com/DadSchoorse/vkBasalt
 
-    ###########
-    ## Other ##
-    ###########
-
     fontconfig
     zlib
     libva-utils # Проверяет работоспособность VAAPI?
@@ -350,33 +275,22 @@
     pamixer # PulseAudio cli (громкость редачу)
     droidcam
 
-    ###########
-    ## Govno ##
-    ###########
-
     cargo
     cmake
     go
     python313
+    glib
 
-    # Protobuf
     protols # LSP
     protobuf
     protoc-gen-go
     protoc-gen-go-grpc
 
-    glib
-
     v2ray # VPN
     xray # VPN
     sing-box # VPN
-
     lmstudio # Local AP
     ventoy-full-gtk
-
-    ############
-    ## Архивы ##
-    ############
 
     zip # Архивировать
     file-roller # Архиватор от gnome

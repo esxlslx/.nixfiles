@@ -25,7 +25,7 @@
         "separator"
         {
           type = "custom";
-          format = "{#90}╭──────────── {#32}Software {#90}────────────";
+          format = "{#32}╭──────────── Software ────────────";
         }
         {
           type = "os";
@@ -38,6 +38,7 @@
         {
           type = "packages";
           key = "│ Packages";
+          format = "{nix-system} (nix-system), {nix-user} (nix-user), {flatpak-system} (flatpak-system), {flatpak-user} (flatpak-user)";
         }
         {
           type = "shell";
@@ -53,11 +54,7 @@
         }
         {
           type = "custom";
-          format = "{#90}├──────────── {#32}Hardware {#90}────────────";
-        }
-        {
-          type = "host";
-          key = "│ Host";
+          format = "{#32}├──────────── Hardware ────────────";
         }
         {
           type = "cpu";
@@ -77,7 +74,7 @@
         }
         {
           type = "custom";
-          format = "{#90}├───────────── {#32}Uptime {#90}─────────────";
+          format = "{#32}├───────────── Uptime ─────────────";
         }
         {
           type = "uptime";
@@ -85,7 +82,7 @@
         }
         {
           type = "custom";
-          format = "{#90}╰──────────────────────────────────";
+          format = "{#32}╰──────────────────────────────────";
         }
       ];
     };

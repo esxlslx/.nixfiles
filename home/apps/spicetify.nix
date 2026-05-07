@@ -13,10 +13,12 @@ in {
     wayland = true;
     enabledExtensions = with spicePkgs.extensions; [
       adblockify
-      beautifulLyrics
+      aiBandBlocker
+      fullAlbumDate
+      featureShuffle
+      simpleBeautifulLyrics
       hidePodcasts
       shuffle
-      #lastfm
     ];
   };
 }

@@ -10,6 +10,11 @@
         proton-cachyos_x86_64_v3
         proton-ge-custom
       ];
+      package = pkgs.steam.override {
+        extraProfile = ''
+          export PROTON_ENABLE_WAYLAND=1
+        '';
+      };
     };
     # Оптимизация для игр. https://github.com/FeralInteractive/gamemode
     gamemode = {
@@ -32,14 +37,11 @@
   environment.systemPackages = with pkgs; [
     steam-run # На всякий случай
     mangohud # Фпс и нагрузку на пк показывает в играх
-    #wineWow64Packages.stableFull # support both 32- and 64-bit applications
     wineWow64Packages.stable #
     winetricks # winetricks (all versions)
     protontricks # Running Winetricks commands for Proton-enabled games
     goverlay #
-    #lutris # Games launcher
     faugus-launcher # Запускать игры
     protonplus # Download proton to Steam Lutris etc
-    ryubing
   ];
 }

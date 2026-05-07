@@ -57,6 +57,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    tg-ws-proxy = {
+      url = "github:pialtor/tg-ws-proxy-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zapret-discord-youtube = {
       url = "github:kartavkun/zapret-discord-youtube";
       inputs.nixpkgs.follows = "nixpkgs";

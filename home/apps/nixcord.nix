@@ -4,8 +4,12 @@
   ];
   programs.nixcord = {
     enable = true;
-    discord.equicord.enable = true;
-    discord.vencord.enable = false;
+    discord = {
+      branch = "stable";
+      openASAR.enable = false;
+      equicord.enable = true;
+      vencord.enable = false;
+    };
     equibop.enable = true;
     config = {
       autoUpdate = true;

@@ -434,6 +434,27 @@
      	place-within-backdrop true
      }
 
+     layer-rule {
+        match namespace="^dms:clipboard$"
+        match namespace="^org.telegram.desktop$"
+        block-out-from "screencast"
+    }
+
+    layer-rule {
+        match namespace="^dms:bar$"
+        match namespace="^dms:dock$"
+    shadow {
+        on
+        // off
+        softness 40
+        spread 5
+        offset x=0 y=5
+        draw-behind-window true
+        color "#00000064"
+        // inactive-color "#00000064"
+        }
+        }
+
      // Blur Options //
     blur {
          // off
