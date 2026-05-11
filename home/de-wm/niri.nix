@@ -67,8 +67,7 @@
          //=== Focus Navigation ===
          Mod+Left			{ focus-column-left; }
          Mod+Down			{ focus-window-down; }
-         Mod+Shift+P			{ spawn-sh "/home/bezydeynost/.config/niri/script/off.sh"; }
-         Mod+Up			{ focus-window-up; }
+         Mod+Up			        { focus-window-up; }
          Mod+Right			{ focus-column-right; }
          Mod+H		        	{ focus-column-left; }
          Mod+J		        	{ focus-window-down; }
@@ -76,7 +75,7 @@
          Mod+L		        	{ focus-column-right; }
 
          // === Window Movement ===
-         Mod+Shift+Left		{ move-column-left; }
+         Mod+Shift+Left		        { move-column-left; }
          Mod+Shift+Down 	        { move-window-down; }
          Mod+Shift+Up 	                { move-window-up; }
          Mod+Shift+Right		{ move-column-right; }

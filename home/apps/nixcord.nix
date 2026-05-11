@@ -6,9 +6,9 @@
     enable = true;
     discord = {
       branch = "stable";
-      openASAR.enable = false;
       equicord.enable = true;
       vencord.enable = false;
+      openASAR.enable = false;
     };
     equibop.enable = true;
     config = {

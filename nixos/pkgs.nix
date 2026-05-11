@@ -7,8 +7,6 @@
     udisks2.enable = true;
     power-profiles-daemon.enable = true;
     upower.enable = true;
-    cloudflare-warp.enable = true;
-    # logmein-hamachi.enable = true;
   };
 
   systemd.services.lactd.enable = true;
@@ -67,28 +65,29 @@
 
     niri.enable = true;
     niri.useNautilus = false;
+    kdeconnect.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
     flameshot
     qbittorrent-enhanced
-    bitwarden-desktop # Password manager
-    throne # Vless
-    gnome-disk-utility # Диски трогат
+    bitwarden-desktop
+    throne
+    gnome-disk-utility
     pavucontrol # PulseAudio Volume Control
     brightnessctl # Brightness control for laptop
     crosspipe # Прокидка звука в другие источники pipewire
     gparted # Форматирование дисков
     localsend # Кидать файлы
-    lsfg-vk # Framegen losless scaling
-    lsfg-vk-ui # Framegen losless scaling
-    pear-desktop # YT-music
-    spotify # Spotify
+    lsfg-vk #
+    lsfg-vk-ui
+    pear-desktop
+    spotify
     nicotine-plus # P2P music
     micro # Terminal text editor
     parabolic # Frontend yt-dlp
     qdiskinfo # Disk info
-    kdiskmark #
+    # kdiskmark
     waypaper # Wallpaper
     zoom-us # Video conferencing
     gnome-calculator # Calculator
@@ -98,11 +97,12 @@
     telegram-desktop
     ayugram-desktop
     element-desktop
-    tor-browser
-    nur.repos.lonerOrz.helium
     distrobox
     darktable
     firefox
+    floorp-bin
+    turntable
+    samira
 
     kdePackages.okular
     kdePackages.kdenlive # Видеоредактор
@@ -112,7 +112,6 @@
     kdePackages.kcolorchooser # Color picker
     kdePackages.ksystemlog # System log viewer
     kdePackages.sddm-kcm # SDDM configuration module
-    kdePackages.kdeconnect-kde
     kdePackages.dolphin
     kdePackages.kservice
     kdiff3 # File/directory comparison tool
@@ -174,9 +173,6 @@
     xwayland-satellite # Для нири
     xwayland # Для нири
     udiskie #
-    calf # Для изиефект
-    lvm2 # Для изиефект
-    lsp-plugins # Для изиефект
     duf # Место
     eza # Replace for ls
     ncdu # Disk usage analyzer
@@ -190,9 +186,10 @@
     nur.repos.zerozawa.mikusays
     xhost
     scrcpy
-    turntable
     quickshell
-    awww # Wallpapers
+    awww # Wallpaper
+    opus-tools
+    music-discord-rpc
 
     libreoffice-fresh # Редактировать документы
     onlyoffice-desktopeditors
