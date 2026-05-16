@@ -38,7 +38,7 @@
         {
           type = "packages";
           key = "│ Packages";
-          format = "{nix-system} (nix-system), {nix-user} (nix-user), {flatpak-system} (flatpak-system), {flatpak-user} (flatpak-user)";
+          format = "{all}";
         }
         {
           type = "shell";
@@ -79,6 +79,11 @@
         {
           type = "uptime";
           key = "│ Uptime";
+        }
+        {
+          type = "command";
+          key = "│ OS Age";
+          text = "days=$(( ($(date +%s) - $(stat -c %W /)) / 86400 )); echo $days days";
         }
         {
           type = "custom";

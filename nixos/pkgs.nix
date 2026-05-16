@@ -242,8 +242,6 @@
     adwaita-icon-theme
     adwaita-qt
     adwaita-qt6
-    libsForQt5.breeze-icons # qt5
-    kdePackages.breeze-icons # qt6
     papirus-icon-theme
     material-icons
 
